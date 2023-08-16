@@ -79,7 +79,6 @@ export default createGlobalStyle`
     font-family: "Open Sans", sans-serif;
     font-style: normal;
     font-weight: 400;
-    line-height: 1.65em;
     color: ${props => props.theme.colors.text};
   }
 `;

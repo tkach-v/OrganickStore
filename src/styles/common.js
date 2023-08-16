@@ -19,6 +19,16 @@ export const Title = styled.div`
   font-family: Roboto, sans-serif;
   font-size: ${props => (props.$fontSize || '3.88889rem')};
   font-weight: 800;
+
+  @media (max-width: ${props => props.theme.breakpoints.medium}) {
+    font-size: ${props => (props.$fontSize || '2rem')};
+  }
+`
+
+export const Text = styled.div`
+  line-height: 1.654em;
+  margin-top: ${props => props.$marginTop};
+  margin-bottom: ${props => props.$marginBottom};
 `
 
 export const Button = styled.button`
