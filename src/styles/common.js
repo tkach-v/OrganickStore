@@ -10,14 +10,14 @@ export const Subtitle = styled.div`
   font-family: Yellowtail, cursive;
   font-size: 2rem;
   font-weight: 400;
-  color: ${props => props.color || '#68A47F'};
+  color: ${props => props.$color || '#68A47F'};
   padding-bottom: 0.44rem;
 `
 
 export const Title = styled.div`
-  color: ${props => props.theme.colors.title};
+  color: ${props => (props.$color || props.theme.colors.title)};
   font-family: Roboto, sans-serif;
-  font-size: 3.88889rem;
+  font-size: ${props => (props.$fontSize || '3.88889rem')};
   font-weight: 800;
 `
 

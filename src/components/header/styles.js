@@ -9,6 +9,7 @@ export const StyledHeader = styled(Container)`
   padding-top: 3rem;
   padding-bottom: 3rem;
   max-width: 1600px;
+  
   @media (max-width: ${props => props.theme.breakpoints.large}) {
     gap: 1.5rem;
   }
@@ -40,7 +41,7 @@ export const NavigationWrapper = styled.div`
     top: 0;
     left: ${props => ((props.$opened) ? "0" : "-100%")};
     background: #FFFFFF;
-    padding: 110px ${props => props.theme.container.paddingX} 25px ${props => props.theme.container.paddingX};
+    padding: 100px ${props => props.theme.container.paddingX} 25px ${props => props.theme.container.paddingX};
     overflow-y: auto;
   }
 `
