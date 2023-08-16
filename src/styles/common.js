@@ -11,6 +11,7 @@ export const Subtitle = styled.div`
   font-size: 2rem;
   font-weight: 400;
   color: ${props => props.color || '#68A47F'};
+  padding-bottom: 0.44rem;
 `
 
 export const Title = styled.div`
@@ -20,9 +21,40 @@ export const Title = styled.div`
   font-weight: 800;
 `
 
-export const Button = styled.div`
-  color: #68A47F;
-  font-family: Yellowtail, sans-serif;
-  font-size: 2rem;
-  font-weight: 400;
+export const Button = styled.button`
+  margin-top: ${props => props.$marginTop};
+  margin-bottom: ${props => props.$marginBottom};
+  color: ${props => (props.$color || props.theme.colors.title)};
+  background-color: ${props => (props.$backgroundColor || '#EFD372')};
+  padding: ${props => (props.$paddingY || '1.6rem')} ${props => (props.$paddingX || '2.2rem')};
+  border: ${props => (props.$border || 'none')};
+  font-family: Roboto, sans-serif;
+  font-size: 1.11111rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.88rem;
+  transition: all 0.2s ease-in-out;
+  @media (min-width: ${props => props.theme.breakpoints.medium}) {
+    &:hover {
+      scale: 1.1;
+    }
+  }
+`
+
+export const ButtonArrow = styled.div`
+  background-color: #335B6B;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+export const CorrectedImage = styled.img`
+  width: 100%;
+  height: auto;
+  mix-blend-mode: multiply;
 `

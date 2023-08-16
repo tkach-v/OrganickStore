@@ -7,7 +7,6 @@ export const baseTheme = {
   breakpoints: {
     large: '1200px',
     medium: '1024px',
-    small: '400px',
   },
 
   container: {

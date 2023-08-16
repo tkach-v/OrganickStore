@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {Button, Container, Subtitle, Title} from "../../styles/common";
+import {Button, ButtonArrow, Container, CorrectedImage, Subtitle, Title} from "../../styles/common";
 
 const StyledPromo = styled.div`
   background-color: #F1EFF0;
@@ -18,6 +18,21 @@ const PromoInner = styled(Container)`
 
 const PromoContent = styled.div`
   max-width: 530px;
+  width: 100%;
+  @media (max-width: ${props => props.theme.breakpoints.medium}) {
+    padding: 3rem 0;
+    text-align: center;
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+`
+
+const PromoImgContainer = styled.div`
+  @media (max-width: ${props => props.theme.breakpoints.medium}) {
+    display: none;
+  }
 `
 
 function Promo() {
@@ -27,11 +42,16 @@ function Promo() {
         <PromoContent>
           <Subtitle>100% Natural Food</Subtitle>
           <Title>Choose the best healthier way of life</Title>
-          <Button>Explore Now</Button>
+          <Button $marginTop="1.28rem">
+            <div>Explore Now</div>
+            <ButtonArrow>
+              <img src="./img/common/arrow.svg" alt=""/>
+            </ButtonArrow>
+          </Button>
         </PromoContent>
-        <div>
-          {/*<img src="./img/promo/image.png" alt="Promo image"/>*/}
-        </div>
+        <PromoImgContainer>
+          <CorrectedImage src="./img/promo/image.png" alt="Promo image"/>
+        </PromoImgContainer>
       </PromoInner>
     </StyledPromo>
   );
