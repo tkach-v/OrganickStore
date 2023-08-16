@@ -20,6 +20,7 @@ export const FooterNavListItem = styled.div`
 
 export const FooterNavLink = styled.a`
   color: ${props => props.theme.colors.text};
+  transition: all 0.2s ease-in-out;
   @media (min-width: ${props => props.theme.breakpoints.medium}) {
     &:hover {
       color: #000e0e;
@@ -84,7 +85,8 @@ export const FooterLogoSocialLink = styled.a`
   width: 3rem;
   height: 3rem;
   position: relative;
-  @media (min-width: 1024px) {
+  transition: all 0.2s ease-in-out;
+  @media (min-width: ${props => props.theme.breakpoints.medium}) {
     &:hover {
       background-color: #D4E9E4;
     }

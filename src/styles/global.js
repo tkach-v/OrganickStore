@@ -73,9 +73,6 @@ export default createGlobalStyle`
     font-weight: 400;
   }
   
-  // add fonts
-  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400&family=Yellowtail&display=swap');
-  
   html {
     // set default font
     font-size: 18px;

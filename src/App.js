@@ -7,14 +7,16 @@ import Promo from "./components/promo/Promo";
 
 function App() {
   return (
-    <ThemeProvider theme={baseTheme}>
-      <GlobalStyles/>
-      <Header/>
-      <main>
-        <Promo/>
-      </main>
-      <Footer/>
-    </ThemeProvider>
+    <div className="App">
+      <ThemeProvider theme={baseTheme}>
+        <GlobalStyles/>
+        <Header/>
+        <main>
+          <Promo/>
+        </main>
+        <Footer/>
+      </ThemeProvider>
+    </div>
   );
 }
 

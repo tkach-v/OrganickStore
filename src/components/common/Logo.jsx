@@ -1,8 +1,8 @@
 import React from 'react';
 
-function Logo() {
+function Logo(props) {
   return (
-    <div>
+    <div style={{'z-index': props.zIndex}}>
       <a href="/">
         <img src="./img/common/logo.svg" alt="Logo"/>
       </a>
