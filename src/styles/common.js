@@ -38,7 +38,7 @@ export const Button = styled.button`
   margin-right: ${props => props.$marginRight};
   color: ${props => (props.$color || props.theme.colors.title)};
   background-color: ${props => (props.$backgroundColor || '#EFD372')};
-  padding: ${props => (props.$paddingY || '1.6rem')} ${props => (props.$paddingX || '2.2rem')};
+  padding: 1.6rem 2.2rem;
   border: ${props => (props.$border || 'none')};
   font-family: Roboto, sans-serif;
   font-size: 1.11111rem;

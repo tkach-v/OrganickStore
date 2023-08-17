@@ -10,6 +10,8 @@ import Shop from "./components/shop/Shop";
 import Testimonials from "./components/testimonials/Testimonials";
 import Offer from "./components/offer/Offer";
 import WhoWeAre from "./components/who-we-are/WhoWeAre";
+import Gallery from "./components/gallery/Gallery";
+import News from "./components/news/News";
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
           <Testimonials/>
           <Offer/>
           <WhoWeAre/>
+          <Gallery/>
+          <News/>
         </main>
         <Footer/>
       </ThemeProvider>

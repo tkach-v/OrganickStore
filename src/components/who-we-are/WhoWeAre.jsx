@@ -1,20 +1,39 @@
 import React from 'react';
 import styled from "styled-components";
-import {CorrectedImage, Subtitle, Text, Title} from "../../styles/common";
+import {Subtitle, Text, Title} from "../../styles/common";
 
 const StyledWhoWeAre = styled.div`
-  background-image: url("../../img/who-we-are/image.jpg");
-  background-repeat: no-repeat;
-  background-size: contain;
+  display: flex;
+  align-items: center;
+  position: relative;
+`
+
+const WhoWeAreImgWrapper = styled.div`
+  height: 100%;
+  overflow: hidden;
+  @media (max-width: ${props => props.theme.breakpoints.medium}) {
+    display: none;
+  }
+`
+
+const WhoWeAreImg = styled.img`
+  height: 100%;
 `
 
 const WhoWeAreContent = styled.div`
   width: 100%;
-  max-width: 790px;
+  max-width: 750px;
   border-radius: 1.7rem;
   padding: 4rem 0 4rem 5rem;
   background: #FFFFFF;
   transform: translateX(-5rem);
+  position: relative;
+  z-index: 1;
+  @media (max-width: ${props => props.theme.breakpoints.medium}) {
+    max-width: none;
+    transform: none;
+    padding: 3rem ${props => props.theme.container.paddingX};
+  }
 `
 
 const WhoWeAreContentThesis = styled.div`
@@ -30,9 +49,9 @@ const WhoWeAreContentThesisTitle = styled(Title)`
 function WhoWeAre() {
   return (
     <StyledWhoWeAre>
-      {/*<WhoWeAreImgWrapper>*/}
-      {/*  <CorrectedImage src="./img/who-we-are/image.jpg" alt=""/>*/}
-      {/*</WhoWeAreImgWrapper>*/}
+      <WhoWeAreImgWrapper>
+        <WhoWeAreImg src="./img/who-we-are/image.jpg" alt=""/>
+      </WhoWeAreImgWrapper>
       <WhoWeAreContent>
         <Subtitle>Eco Friendly</Subtitle>
         <Title>Econis is a Friendly Organic Store</Title>
