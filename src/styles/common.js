@@ -34,6 +34,8 @@ export const Text = styled.div`
 export const Button = styled.button`
   margin-top: ${props => props.$marginTop};
   margin-bottom: ${props => props.$marginBottom};
+  margin-left: ${props => props.$marginLeft};
+  margin-right: ${props => props.$marginRight};
   color: ${props => (props.$color || props.theme.colors.title)};
   background-color: ${props => (props.$backgroundColor || '#EFD372')};
   padding: ${props => (props.$paddingY || '1.6rem')} ${props => (props.$paddingX || '2.2rem')};

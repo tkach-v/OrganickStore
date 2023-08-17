@@ -6,6 +6,10 @@ import Footer from "./components/footer/Footer";
 import Promo from "./components/promo/Promo";
 import Banners from "./components/banners/Banners";
 import About from "./components/about/About";
+import Shop from "./components/shop/Shop";
+import Testimonials from "./components/testimonials/Testimonials";
+import Offer from "./components/offer/Offer";
+import WhoWeAre from "./components/who-we-are/WhoWeAre";
 
 function App() {
   return (
@@ -17,6 +21,10 @@ function App() {
           <Promo/>
           <Banners/>
           <About/>
+          <Shop/>
+          <Testimonials/>
+          <Offer/>
+          <WhoWeAre/>
         </main>
         <Footer/>
       </ThemeProvider>
