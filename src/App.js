@@ -12,6 +12,7 @@ import Offer from "./components/offer/Offer";
 import WhoWeAre from "./components/who-we-are/WhoWeAre";
 import Gallery from "./components/gallery/Gallery";
 import News from "./components/news/News";
+import {Subtitle} from "./styles/common";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <WhoWeAre/>
           <Gallery/>
           <News/>
+          <Subtitle/>
         </main>
         <Footer/>
       </ThemeProvider>

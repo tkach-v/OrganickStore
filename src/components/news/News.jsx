@@ -5,6 +5,10 @@ import {Button, ButtonArrow, Container, CorrectedImage, Subtitle, Text, Title} f
 const StyledNews = styled(Container)`
   padding-top: 9rem;
   padding-bottom: 9rem;
+  @media (max-width: ${props => props.theme.breakpoints.medium}) {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
 `
 
 const NewsHeader = styled.div`
@@ -13,6 +17,11 @@ const NewsHeader = styled.div`
   justify-content: space-between;
   gap: 2rem;
   padding-bottom: 2.5rem;
+  @media (max-width: ${props => props.theme.breakpoints.medium}) {
+    flex-direction: column;
+    align-items: start;
+    gap: 1rem;
+  }
 `
 
 const NewsHeaderTitleBlock = styled.div`
@@ -28,12 +37,22 @@ const NewsHeaderButton = styled(Button)`
 const NewsContent = styled.div`
   display: flex;
   gap: 2.5rem;
+  @media (max-width: ${props => props.theme.breakpoints.medium}) {
+    flex-direction: column;
+    gap: 1rem;
+  }
 `
 
 const StyledNewsItem = styled.div`
   width: 100%;
   position: relative;
   padding-bottom: 3rem;
+  @media (max-width: ${props => props.theme.breakpoints.medium}) {
+    padding-bottom: 5rem;
+  }
+  @media (max-width: 768px) {
+    padding-bottom: 0;
+  }
 `
 
 const NewsItemImage = styled.img`
@@ -41,6 +60,9 @@ const NewsItemImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `
 
 const NewsItemDate = styled(Title)`
@@ -56,6 +78,9 @@ const NewsItemDate = styled(Title)`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `
 
 const NewsItemInfo = styled.div`
@@ -65,8 +90,21 @@ const NewsItemInfo = styled.div`
   box-shadow: 0 20px 35px 0 rgba(167, 167, 167, 0.25);
   padding: 2.56rem 3rem 3.3rem 3rem;
   position: absolute;
-  top: calc(50% - 3rem);
+  z-index: 1;
+  top: calc(55% - 3rem);
   left: 2rem;
+  @media (max-width: ${props => props.theme.breakpoints.medium}) {
+    top: calc(55% - 5rem);
+  }
+  @media (max-width: 768px) {
+    position: relative;
+    width: 100%;
+    left: 0;
+    top: 0;
+  }
+  @media (max-width: 500px) {
+    padding: 1.5rem;
+  }
 `
 
 const NewsItemInfoAuthor = styled(Title)`
