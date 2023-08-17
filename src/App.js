@@ -13,6 +13,7 @@ import WhoWeAre from "./components/who-we-are/WhoWeAre";
 import Gallery from "./components/gallery/Gallery";
 import News from "./components/news/News";
 import {Subtitle} from "./styles/common";
+import Subscribe from "./components/subscribe/Subscribe";
 
 function App() {
   return (
@@ -30,7 +31,7 @@ function App() {
           <WhoWeAre/>
           <Gallery/>
           <News/>
-          <Subtitle/>
+          <Subscribe/>
         </main>
         <Footer/>
       </ThemeProvider>
