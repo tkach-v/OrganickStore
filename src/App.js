@@ -14,6 +14,7 @@ import Gallery from "./components/gallery/Gallery";
 import News from "./components/news/News";
 import {Subtitle} from "./styles/common";
 import Subscribe from "./components/subscribe/Subscribe";
+import CompletedOrder from "./components/completedOrder/CompletedOrder";
 
 function App() {
   return (
@@ -22,16 +23,17 @@ function App() {
         <GlobalStyles/>
         <Header/>
         <main>
-          <Promo/>
-          <Banners/>
-          <About/>
-          <Shop/>
-          <Testimonials/>
-          <Offer/>
-          <WhoWeAre/>
-          <Gallery/>
-          <News/>
-          <Subscribe/>
+          <CompletedOrder/>
+          {/*<Promo/>*/}
+          {/*<Banners/>*/}
+          {/*<About/>*/}
+          {/*<Shop/>*/}
+          {/*<Testimonials/>*/}
+          {/*<Offer/>*/}
+          {/*<WhoWeAre/>*/}
+          {/*<Gallery/>*/}
+          {/*<News/>*/}
+          {/*<Subscribe/>*/}
         </main>
         <Footer/>
       </ThemeProvider>
