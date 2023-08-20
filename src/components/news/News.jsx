@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {Button, ButtonArrow, Container, CorrectedImage, Subtitle, Text, Title} from "../../styles/common";
+import {Button, ButtonArrow, Container, Subtitle, Text, Title} from "../../styles/common";
 
 const StyledNews = styled(Container)`
   padding-top: 9rem;

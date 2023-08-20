@@ -15,6 +15,7 @@ import News from "./components/news/News";
 import {Subtitle} from "./styles/common";
 import Subscribe from "./components/subscribe/Subscribe";
 import CompletedOrder from "./components/completedOrder/CompletedOrder";
+import Error404 from "./components/error-404/Error404";
 
 function App() {
   return (
@@ -23,17 +24,18 @@ function App() {
         <GlobalStyles/>
         <Header/>
         <main>
+          <Error404/>
           <CompletedOrder/>
-          {/*<Promo/>*/}
-          {/*<Banners/>*/}
-          {/*<About/>*/}
-          {/*<Shop/>*/}
-          {/*<Testimonials/>*/}
-          {/*<Offer/>*/}
-          {/*<WhoWeAre/>*/}
-          {/*<Gallery/>*/}
-          {/*<News/>*/}
-          {/*<Subscribe/>*/}
+          <Promo/>
+          <Banners/>
+          <About/>
+          <Shop/>
+          <Testimonials/>
+          <Offer/>
+          <WhoWeAre/>
+          <Gallery/>
+          <News/>
+          <Subscribe/>
         </main>
         <Footer/>
       </ThemeProvider>
