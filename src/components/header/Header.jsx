@@ -84,7 +84,7 @@ function Cart() {
   const counter = 0;
 
   return (
-    <StyledCart>
+    <StyledCart onClick={() => console.log('go to cart section')}>
       <CartIcon>
         <img src="./img/header/cart-icon.svg" alt=""/>
       </CartIcon>

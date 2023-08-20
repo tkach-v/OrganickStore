@@ -16,16 +16,22 @@ import {Subtitle} from "./styles/common";
 import Subscribe from "./components/subscribe/Subscribe";
 import CompletedOrder from "./components/completedOrder/CompletedOrder";
 import Error404 from "./components/error-404/Error404";
+import Modal from "./components/modal/Modal";
+import {useState} from "react";
+import Cart from "./components/cart/Cart";
 
 function App() {
+  const [modalActive, setModalActive] = useState(false);
   return (
     <div className="App">
       <ThemeProvider theme={baseTheme}>
         <GlobalStyles/>
         <Header/>
         <main>
-          <Error404/>
-          <CompletedOrder/>
+          <Cart/>
+          {/*<Modal active={modalActive} setActive={setModalActive} />*/}
+          {/*<Error404/>*/}
+          {/*<CompletedOrder/>*/}
           <Promo/>
           <Banners/>
           <About/>
