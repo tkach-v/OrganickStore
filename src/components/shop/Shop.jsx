@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
 import {Link, LinkArrow, Container, Subtitle, Title} from "../../styles/common";
+import ProductCard from "../common/ProductCard";
 
 const StyledShop = styled(Container)`
   padding-bottom: 9rem;
@@ -16,14 +17,55 @@ const StyledShop = styled(Container)`
 const ShopProducts = styled.div`
   padding-top: 2rem;
   padding-bottom: 6rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 `
 
 function Shop(props) {
+  // const [products, setProducts] = useState();
   return (
     <StyledShop>
       <Subtitle>Categories</Subtitle>
       <Title>Our Products</Title>
-      <ShopProducts></ShopProducts>
+      <ShopProducts>
+        <ProductCard
+          category="Fresh"
+          name="Fresh Banana Fruites"
+          imageUrl="./img/shop/fresh-banana-fruites.png"
+          price="14.00"
+          priceBefore="20.00" />
+        <ProductCard
+          category="Health"
+          name="Brown Hazelnut"
+          imageUrl="./img/shop/mung-bean-1.png"
+          price="140.00"
+          priceBefore="20.00" />
+        <ProductCard
+          category="Health"
+          name="Mung Bean"
+          imageUrl="./img/shop/brown-hazelnut.png"
+          price="14.00"
+          priceBefore="20.00" />
+        <ProductCard
+          category="Fresh"
+          name="Fresh Banana Fruites"
+          imageUrl="./img/shop/fresh-banana-fruites.png"
+          price="14.00"
+          priceBefore="20.00" />
+        <ProductCard
+          category="Fresh"
+          name="Fresh Banana Fruites"
+          imageUrl="./img/shop/fresh-banana-fruites.png"
+          price="14.00"
+          priceBefore="20.00" />
+        <ProductCard
+          category="Fresh"
+          name="Fresh Banana Fruites"
+          imageUrl="./img/shop/fresh-banana-fruites.png"
+          price="14.00"
+          priceBefore="20.00" />
+      </ShopProducts>
       <Link href="#" $color="#FFFFFF" $backgroundColor="#1E1E1E" $marginLeft="auto" $marginRight="auto">
         <div>Load More</div>
         <LinkArrow>

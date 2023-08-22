@@ -23,29 +23,27 @@ import Cart from "./components/cart/Cart";
 function App() {
   const [modalActive, setModalActive] = useState(false);
   return (
-    <div className="App">
-      <ThemeProvider theme={baseTheme}>
-        <GlobalStyles/>
-        <Header/>
-        <main>
-          <Cart/>
-          {/*<Modal active={modalActive} setActive={setModalActive} />*/}
-          {/*<Error404/>*/}
-          {/*<CompletedOrder/>*/}
-          {/*<Promo/>*/}
-          {/*<Banners/>*/}
-          {/*<About/>*/}
-          {/*<Shop/>*/}
-          {/*<Testimonials/>*/}
-          {/*<Offer/>*/}
-          {/*<WhoWeAre/>*/}
-          {/*<Gallery/>*/}
-          {/*<News/>*/}
-          {/*<Subscribe/>*/}
-        </main>
-        <Footer/>
-      </ThemeProvider>
-    </div>
+    <ThemeProvider theme={baseTheme}>
+      <GlobalStyles/>
+      <Header/>
+      <main>
+        {/*<Cart/>*/}
+        {/*<Modal active={modalActive} setActive={setModalActive} />*/}
+        {/*<Error404/>*/}
+        {/*<CompletedOrder/>*/}
+        {/*<Promo/>*/}
+        {/*<Banners/>*/}
+        {/*<About/>*/}
+        <Shop/>
+        {/*<Testimonials/>*/}
+        <Offer/>
+        {/*<WhoWeAre/>*/}
+        {/*<Gallery/>*/}
+        {/*<News/>*/}
+        {/*<Subscribe/>*/}
+      </main>
+      <Footer/>
+    </ThemeProvider>
   );
 }
 
