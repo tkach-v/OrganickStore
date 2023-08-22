@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {Button, ButtonArrow, Container, CorrectedImage, Subtitle, Title} from "../../styles/common";
+import {Link, LinkArrow, Container, CorrectedImage, Subtitle, Title} from "../../styles/common";
 
 const StyledPromo = styled.div`
   background-color: #F1EFF0;
@@ -42,12 +42,12 @@ function Promo() {
         <PromoContent>
           <Subtitle>100% Natural Food</Subtitle>
           <Title>Choose the best healthier way of life</Title>
-          <Button $marginTop="1.28rem">
+          <Link href="#" $marginTop="1.28rem">
             <div>Explore Now</div>
-            <ButtonArrow>
+            <LinkArrow>
               <img src="./img/common/arrow.svg" alt=""/>
-            </ButtonArrow>
-          </Button>
+            </LinkArrow>
+          </Link>
         </PromoContent>
         <PromoImgContainer>
           <CorrectedImage src="./img/promo/image.png" alt="Promo image"/>

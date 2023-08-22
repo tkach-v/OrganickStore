@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {Button, ButtonArrow, Container, CorrectedImage, Subtitle, Title, Text} from "../../styles/common";
+import {Link, LinkArrow, Container, CorrectedImage, Subtitle, Title, Text} from "../../styles/common";
 
 const StyledAbout = styled.div`
   background: #F9F8F8;
@@ -100,12 +100,12 @@ function About(props) {
               </div>
             </AboutListItem>
           </AboutList>
-          <Button $marginTop="2.5rem" $color="#FFFFFF" $backgroundColor={props => props.theme.colors.title}>
+          <Link href="#" $marginTop="2.5rem" $color="#FFFFFF" $backgroundColor={props => props.theme.colors.title}>
             <div>Shop Now</div>
-            <ButtonArrow>
+            <LinkArrow>
               <img src="./img/common/arrow.svg" alt=""/>
-            </ButtonArrow>
-          </Button>
+            </LinkArrow>
+          </Link>
         </AboutContent>
       </AboutInner>
     </StyledAbout>

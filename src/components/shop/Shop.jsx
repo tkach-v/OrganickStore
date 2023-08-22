@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {Button, ButtonArrow, Container, Subtitle, Title} from "../../styles/common";
+import {Link, LinkArrow, Container, Subtitle, Title} from "../../styles/common";
 
 const StyledShop = styled(Container)`
   padding-bottom: 9rem;
@@ -24,12 +24,12 @@ function Shop(props) {
       <Subtitle>Categories</Subtitle>
       <Title>Our Products</Title>
       <ShopProducts></ShopProducts>
-      <Button $color="#FFFFFF" $backgroundColor="#1E1E1E" $marginLeft="auto" $marginRight="auto">
-        <div>Shop Now</div>
-        <ButtonArrow>
+      <Link href="#" $color="#FFFFFF" $backgroundColor="#1E1E1E" $marginLeft="auto" $marginRight="auto">
+        <div>Load More</div>
+        <LinkArrow>
           <img src="./img/common/arrow.svg" alt=""/>
-        </ButtonArrow>
-      </Button>
+        </LinkArrow>
+      </Link>
     </StyledShop>
   );
 }

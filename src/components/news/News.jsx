@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {Button, ButtonArrow, Container, Subtitle, Text, Title} from "../../styles/common";
+import {Link, LinkArrow, Container, Subtitle, Text, Title} from "../../styles/common";
 
 const StyledNews = styled(Container)`
   padding-top: 9rem;
@@ -28,7 +28,7 @@ const NewsHeaderTitleBlock = styled.div`
   max-width: 970px;
 `
 
-const NewsHeaderButton = styled(Button)`
+const NewsHeaderButton = styled(Link)`
   border: 2px solid #274C5B;
   background: #FFFFFF;
   min-width: 213px;
@@ -132,12 +132,12 @@ function NewsItem(props) {
           <Title $fontSize="1.38889rem">{props.title}</Title>
           <Text>{props.description}</Text>
         </div>
-        <Button>
+        <Link>
           <div>Read More</div>
-          <ButtonArrow>
+          <LinkArrow>
             <img src="./img/common/arrow.svg" alt=""/>
-          </ButtonArrow>
-        </Button>
+          </LinkArrow>
+        </Link>
       </NewsItemInfo>
     </StyledNewsItem>
   );
@@ -153,9 +153,9 @@ function News() {
         </NewsHeaderTitleBlock>
         <NewsHeaderButton>
           <div>More News</div>
-          <ButtonArrow>
+          <LinkArrow>
             <img src="./img/common/arrow.svg" alt=""/>
-          </ButtonArrow>
+          </LinkArrow>
         </NewsHeaderButton>
       </NewsHeader>
       <NewsContent>

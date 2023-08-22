@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {Button, ButtonArrow, Container, Text, Title} from "../../styles/common";
+import {Link, LinkArrow, Container, Text, Title} from "../../styles/common";
 
 const StyledError404 = styled.div`
   background-image: url("../../img/error-404/background.jpg");
@@ -38,15 +38,16 @@ function Error404() {
         <Error404Title>404</Error404Title>
         <Title>Page not found</Title>
         <Text $marginTop="0.8rem">The page you are looking for doesn't exist or has been moved</Text>
-        <Button $marginTop="1.5rem"
-                $backgroundColor={props => props.theme.colors.title}
-                $color="#FFFFFF"
+        <Link href="#"
+              $marginTop="1.5rem"
+              $backgroundColor={props => props.theme.colors.title}
+              $color="#FFFFFF"
         >
           <div>Go to Homepage</div>
-          <ButtonArrow>
+          <LinkArrow>
             <img src="./img/common/arrow.svg" alt=""/>
-          </ButtonArrow>
-        </Button>
+          </LinkArrow>
+        </Link>
       </Error404Inner>
     </StyledError404>
   );

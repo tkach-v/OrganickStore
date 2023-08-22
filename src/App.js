@@ -32,16 +32,16 @@ function App() {
           {/*<Modal active={modalActive} setActive={setModalActive} />*/}
           {/*<Error404/>*/}
           {/*<CompletedOrder/>*/}
-          <Promo/>
-          <Banners/>
-          <About/>
-          <Shop/>
-          <Testimonials/>
-          <Offer/>
-          <WhoWeAre/>
-          <Gallery/>
-          <News/>
-          <Subscribe/>
+          {/*<Promo/>*/}
+          {/*<Banners/>*/}
+          {/*<About/>*/}
+          {/*<Shop/>*/}
+          {/*<Testimonials/>*/}
+          {/*<Offer/>*/}
+          {/*<WhoWeAre/>*/}
+          {/*<Gallery/>*/}
+          {/*<News/>*/}
+          {/*<Subscribe/>*/}
         </main>
         <Footer/>
       </ThemeProvider>

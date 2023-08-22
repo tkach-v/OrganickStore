@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {Button, Container, Title} from "../../styles/common";
+import {Container, Title, Button} from "../../styles/common";
 
 const StyledSubscribe = styled(Container)`
   background-image: url("../../img/subscribe/background.jpg");
@@ -74,7 +74,7 @@ function Subscribe() {
       <SubscribeTitle>Subscribe to our Newsletter</SubscribeTitle>
       <SubscribeForm>
         <SubscribeFormInput type="email" required placeholder="Your Email Address" />
-        <SubscribeFormButton>Subscribe</SubscribeFormButton>
+        <SubscribeFormButton type="submit">Subscribe</SubscribeFormButton>
       </SubscribeForm>
     </StyledSubscribe>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {Button, CorrectedImage} from "../../styles/common";
+import {Link, CorrectedImage} from "../../styles/common";
 
 const StyledGallery = styled.div`
   background: #F1F8F4;
@@ -26,7 +26,7 @@ const GalleryItem = styled.div`
   }
 `
 
-const GalleryItemBtn = styled(Button)`
+const GalleryItemBtn = styled(Link)`
   background: #FFFFFF;
   padding: 1.5rem 4rem;
   font-weight: 500;

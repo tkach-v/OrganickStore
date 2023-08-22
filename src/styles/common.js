@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
 export const Container = styled.div`
   max-width: ${props => props.theme.container.maxWidth};
@@ -31,23 +31,20 @@ export const Text = styled.div`
   margin-bottom: ${props => props.$marginBottom};
 `
 
-export const Button = styled.button`
+const ButtonStyles = css`
   margin-top: ${props => props.$marginTop};
   margin-bottom: ${props => props.$marginBottom};
-  margin-left: ${props => props.$marginLeft};
-  margin-right: ${props => props.$marginRight};
   color: ${props => (props.$color || props.theme.colors.title)};
   background-color: ${props => (props.$backgroundColor || '#EFD372')};
-  padding: 1.6rem 2.2rem;
+  padding: ${props => (props.$paddingY || '1.6rem')} ${props => (props.$paddingX || '2.2rem')};
   border: ${props => (props.$border || 'none')};
   font-family: Roboto, sans-serif;
   font-size: 1.11111rem;
   font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  display: inline-block;
   border-radius: 0.88rem;
   transition: all 0.2s ease-in-out;
+  cursor: pointer;
   @media (min-width: ${props => props.theme.breakpoints.medium}) {
     &:hover {
       scale: 1.1;
@@ -55,7 +52,41 @@ export const Button = styled.button`
   }
 `
 
-export const ButtonArrow = styled.div`
+const StyledLink = styled.a`
+  ${ButtonStyles}
+`
+
+const LinkContent = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`
+
+export function Link({children, href, ...props}) {
+  return (
+    <StyledLink href={href} {...props}>
+      <LinkContent>
+        {children}
+      </LinkContent>
+    </StyledLink>
+  );
+}
+
+const StyledButton = styled.button`
+  ${ButtonStyles}
+`
+
+export function Button({children, type, ...props}) {
+  return (
+    <StyledButton type={type} {...props}>
+      <LinkContent>
+        {children}
+      </LinkContent>
+    </StyledButton>
+  );
+}
+
+export const LinkArrow = styled.div`
   background-color: #335B6B;
   border-radius: 50%;
   height: 20px;

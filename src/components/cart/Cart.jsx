@@ -1,37 +1,230 @@
-import React from 'react';
-import styled from "styled-components";
-import {Title} from "../../styles/common";
+import React, {useState} from 'react';
+import {Button, CorrectedImage, LinkArrow} from "../../styles/common";
+import {
+  CartTitle,
+  CartContent,
+  CartContentInner,
+  CartOrdersList,
+  StyledCartOrdersListItem,
+  CartOrdersListItemInfoContainer,
+  CartOrdersListItemImageContainer,
+  CartSummaries,
+  CartOrdersListItemTitleAndPrice,
+  CartOrdersListItemBeforeDiscount,
+  CartOrdersListItemQuantityContainer,
+  CartOrdersListItemQuantityInput,
+  CartOrdersListItemPriceWrapper,
+  CartFormWrapper,
+  CartFormField,
+  CartFormInput,
+  CartFormError, CartFormFieldsContainer, CartFormFieldWide, CartFormText, InputError,
+} from "./styles";
+import {ErrorMessage, Form, Formik} from "formik";
+import * as Yup from 'yup';
 
-const CartTitle = styled(Title)`
-  text-align: center;
-  background-image: url("../../img/cart/title-background.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  padding: 10rem 0;
-  margin-bottom: 6rem;
-  @media (max-width: ${props => props.theme.breakpoints.medium}) {
-    padding: 3rem 0;
-    margin-bottom: 2rem;
-  }
-`
+function CartOrdersListItem({name, imageUrl, currentPrice, beforeDiscountPrice, amount}) {
+  const [quantity, setQuantity] = useState(amount);
+  const handleQuantityChange = (event) => {
+    const inputValue = event.target.value;
 
-const CartContent = styled.div`
-  background: rgba(253, 176, 45, 0.16);;
-  padding: 10rem 0;
-  margin-bottom: 7rem;
-  @media (max-width: ${props => props.theme.breakpoints.medium}) {
-    padding: 3rem 0;
-    margin-bottom: 2rem;
-  }
-`
+    if (inputValue === '' || isNaN(inputValue) || parseInt(inputValue) <= 0) {
+      setQuantity('');
+    } else {
+      setQuantity(inputValue);
+    }
+  };
+  return (
+    <StyledCartOrdersListItem>
+      <CartOrdersListItemInfoContainer>
+        <CartOrdersListItemImageContainer>
+          <CorrectedImage src={imageUrl} alt={name + 'image'}/>
+        </CartOrdersListItemImageContainer>
+        <CartOrdersListItemTitleAndPrice>
+          <a href="#" style={{color: 'inherit'}}>{name}</a>
+          <CartOrdersListItemPriceWrapper>
+            <CartOrdersListItemBeforeDiscount>
+              <span>$</span>
+              <span
+                style={{textDecoration: 'line-through', textDecorationThickness: '4px'}}>{beforeDiscountPrice}</span>
+            </CartOrdersListItemBeforeDiscount>
+            <div>${currentPrice}</div>
+          </CartOrdersListItemPriceWrapper>
+        </CartOrdersListItemTitleAndPrice>
+      </CartOrdersListItemInfoContainer>
+      <CartOrdersListItemQuantityContainer>
+        <div>Quantity:</div>
+        <CartOrdersListItemQuantityInput
+          type="number"
+          value={quantity}
+          onChange={handleQuantityChange}
+        />
+        <Button type="button"
+                $color="#FFFFFF"
+                $backgroundColor={props => props.theme.colors.title}
+                $paddingY="1rem"
+                $paddingX="2rem"
+                onClick={() => console.log(`Remove ${name} from cart`)}
+        >X</Button>
+      </CartOrdersListItemQuantityContainer>
+    </StyledCartOrdersListItem>
+  );
+}
 
+function CartForm({visible}) {
+  const validationSchema = Yup.object().shape({
+    fullName: Yup.string()
+      .matches(/^[^\d_!@#$%^&*()+=\[\]{}|\\:;"'<>,.?\/`~]*$/, 'Invalid characters in full name')
+      .required('Required'),
+    email: Yup.string()
+      .email('Enter a valid email')
+      .required('Required'),
+    address: Yup.string()
+      .typeError('Must be a string')
+      .required('Required'),
+    phone: Yup.string()
+      .matches(/^\+?[0-9]{8,15}$/, 'Invalid phone number')
+      .required('Required'),
+  })
+  return (
+    <CartFormWrapper $visible={visible}>
+      <Formik
+        initialValues={{
+          fullName: '',
+          email: '',
+          address: '',
+          phone: '',
+          message: '',
+        }}
+        validateOnBlur
+        validationSchema={validationSchema}
+        onSubmit={(values) => {
+          console.log(values);
+        }}
+      >
+        {({values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty}) => (
+          <Form>
+            <CartFormFieldsContainer>
+              <CartFormField>
+                <label htmlFor="fullName">Full Name*</label>
+                <CartFormInput
+                  placeholder="Your Full Name"
+                  type="text"
+                  name="fullName"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.fullName}
+                  $isError={touched.fullName && errors.fullName}
+                />
+                <ErrorMessage name="fullName" component={CartFormError}/>
+              </CartFormField>
+              <CartFormField>
+                <label htmlFor="fullName">Your Email*</label>
+                <CartFormInput
+                  placeholder="example@yourmail.com"
+                  type="email"
+                  name="email"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.email}
+                  $isError={touched.email && errors.email}
+                />
+                <ErrorMessage name="email" component={CartFormError}/>
+              </CartFormField>
+              <CartFormField>
+                <label htmlFor="fullName">Address*</label>
+                <CartFormInput
+                  placeholder="your company  address"
+                  type="text"
+                  name="address"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.address}
+                  $isError={touched.address && errors.address}
+                />
+                <ErrorMessage name="address" component={CartFormError}/>
+              </CartFormField>
+              <CartFormField>
+                <label htmlFor="fullName">Phone number*</label>
+                <CartFormInput
+                  placeholder="Enter your phone"
+                  type="text"
+                  name="phone"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.phone}
+                  $isError={touched.phone && errors.phone}
+                />
+                <ErrorMessage name="phone" component={CartFormError}/>
+              </CartFormField>
+              <CartFormFieldWide>
+                <label htmlFor="fullName">Message</label>
+                <CartFormText
+                  rows='8'
+                  placeholder="some extra information"
+                  type="text"
+                  name="message"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.message}
+                />
+              </CartFormFieldWide>
+            </CartFormFieldsContainer>
+            <Button
+              type='submit'
+              onClick={handleSubmit}
+              disabled={!isValid && !dirty}
+              $color="#FFFFFF"
+              $backgroundColor={props => props.theme.colors.title}
+              $paddingX="4.2rem"
+              $marginTop="5rem"
+            >Confirm</Button>
+          </Form>
+        )}
+      </Formik>
+    </CartFormWrapper>
+  );
+}
 
 function Cart() {
+  const [visibleForm, setVisibleForm] = useState(false);
+  const total = 26;
+  const discount = 14;
+
   return (
     <div>
       <CartTitle>Cart</CartTitle>
-      <CartContent>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci asperiores autem blanditiis commodi consectetur consequuntur culpa delectus distinctio dolore doloremque, error iste molestias mollitia nemo nesciunt optio possimus veritatis!</CartContent>
+      <CartContent>
+        <CartContentInner>
+          <CartOrdersList>
+            <CartOrdersListItem
+              name="Health Pistachios"
+              imageUrl="./img/shop/mung-bean-1.png"
+              currentPrice="50"
+              beforeDiscountPrice="100"
+              amount={1}
+            />
+          </CartOrdersList>
+          <CartSummaries>
+            <div>Total Cost {total}$</div>
+            <div>Discount {discount}$</div>
+          </CartSummaries>
+          {visibleForm ? null : (
+            <Button type="Button"
+                    $paddingX="3.2rem"
+                    $marginTop="4rem"
+                    $color="#FFFFFF"
+                    $backgroundColor={props => props.theme.colors.title}
+                    onClick={(e) => setVisibleForm(true)}
+            >
+              <div>To order</div>
+              <LinkArrow>
+                <img src="./img/common/arrow.svg" alt=""/>
+              </LinkArrow>
+            </Button>
+          )}
+          <CartForm visible={visibleForm}/>
+        </CartContentInner>
+      </CartContent>
     </div>
   );
 }

@@ -2,6 +2,7 @@ export const baseTheme = {
   colors: {
     text: '#525C60',
     title: '#274C5B',
+    error: '#f84147'
   },
 
   breakpoints: {
