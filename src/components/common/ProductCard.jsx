@@ -82,7 +82,10 @@ const ProductStars = styled.img`
 
 function ProductCard({category, imageUrl, name, price, priceBefore}) {
   return (
-    <StyledProductCard>
+    <StyledProductCard onClick={(e) => {
+      e.preventDefault();
+      console.log(`Show ${name} details`);
+    }}>
       <ProductCategory>{category}</ProductCategory>
       <CorrectedImage src={imageUrl} alt={name}/>
       <ProductInfoContainer>
