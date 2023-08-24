@@ -3,7 +3,6 @@ import styled from "styled-components";
 import {Container, Title} from "../../../assets/styles/common";
 import {CustomButton} from "../../../components/CustomButtonLink/CustomButtonLink";
 import background from "../../../assets/img/subscribe/background.jpg"
-import {useNavigate} from "react-router-dom";
 
 const StyledSubscribe = styled(Container)`
   border-radius: 1.66667rem;
@@ -70,7 +69,6 @@ const SubscribeFormInput = styled.input`
 
 
 function Subscribe(props) {
-  const navigate = useNavigate();
   return (
     <StyledSubscribe>
       <SubscribeTitle>Subscribe to our Newsletter</SubscribeTitle>

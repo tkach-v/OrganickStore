@@ -30,7 +30,7 @@ function CompletedOrder() {
     }, 5000);
 
     return () => clearTimeout(redirectTimer);
-  }, []);
+  }, [navigate]);
   return (
     <StyledCompletedOrder>
       <CompletedOrderTitle>Thank you for your order</CompletedOrderTitle>
