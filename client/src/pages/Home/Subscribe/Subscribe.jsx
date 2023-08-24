@@ -74,11 +74,7 @@ function Subscribe(props) {
   return (
     <StyledSubscribe>
       <SubscribeTitle>Subscribe to our Newsletter</SubscribeTitle>
-      <SubscribeForm onSubmit={(e) => {
-        e.preventDefault();
-        window.scrollTo(0, 0);
-        navigate("/");
-      }}>
+      <SubscribeForm>
         <SubscribeFormInput type="email" required placeholder="Your Email Address" />
         <CustomButton
           type="submit"

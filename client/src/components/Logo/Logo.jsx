@@ -1,12 +1,13 @@
 import React from 'react';
 import logoImage from "../../assets/img/common/logo.svg"
+import {Link} from "react-router-dom";
 
 function Logo(props) {
   return (
     <div style={{zIndex: props.zIndex}}>
-      <a href="/">
+      <Link to="/">
         <img src={logoImage} alt="Logo"/>
-      </a>
+      </Link>
     </div>
   );
 }
