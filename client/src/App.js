@@ -7,6 +7,7 @@ import Home from "./pages/Home/Home";
 import Cart from "./pages/Сart/Cart";
 import NoPage from "./pages/NoPage/NoPage";
 import CompletedOrder from "./pages/CompletedOrder/CompletedOrder";
+import Admin from "./pages/Admin/Admin";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="completed-order" element={<CompletedOrder/>}/>
             <Route path="*" element={<NoPage/>}/>
           </Route>
+          <Route path="/admin" element={<Admin/>} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>);

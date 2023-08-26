@@ -3,11 +3,20 @@ const db = require('../services/db.service');
 async function getAllOrders(req, res, next) {
   try {
     const result = await db.query(`
-        select *
-        from orders,
-             order_items
-        where orders.id = order_items.order_id
-        order by orders.id desc
+        SELECT
+            orders.id,
+            orders.full_name,
+            orders.email,
+            orders.address,
+            orders.phone,
+            orders.message,
+            JSON_ARRAYAGG(
+                    JSON_OBJECT('product_id', order_items.product_id, 'quantity', order_items.quantity)
+                ) AS ordered_items
+        FROM orders
+                 JOIN order_items ON orders.id = order_items.order_id
+        GROUP BY orders.id
+        ORDER BY orders.id DESC;
     `);
 
     res.json(result);

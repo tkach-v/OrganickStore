@@ -4,9 +4,9 @@ async function getProducts(req, res, next) {
   try {
     const limit = parseInt(req.query.limit);
     const limitClause = limit && limit > 0 ? `LIMIT ${limit}` : '';
-    const orderClause = req.query.ordering || "id asc";
+    const orderClause = req.query.ordering || "id ASC";
 
-    const products = await db.query(`select * from product order by ${orderClause} ${limitClause};`);
+    const products = await db.query(`SELECT * FROM product ORDER BY ${orderClause} ${limitClause};`);
 
     res.json(products);
   } catch (err) {
