@@ -61,8 +61,7 @@ function ProductCard({product}) {
 
   return (
     <StyledProductCard
-      onClick={(e) => {
-        e.preventDefault();
+      onClick={() => {
         console.log(`Show ${product.name} details`);
       }}>
       <ProductCategory>{product.category}</ProductCategory>
