@@ -13,16 +13,16 @@ import Subscribe from "./Subscribe/Subscribe";
 function Home() {
   return (
     <>
-      <Promo/>
-      <Banners/>
-      <About/>
+      {/*<Promo/>*/}
+      {/*<Banners/>*/}
+      {/*<About/>*/}
       <Shop/>
-      <Testimonials/>
+      {/*<Testimonials/>*/}
       <Offer/>
-      <WhoWeAre/>
-      <Gallery/>
-      <News/>
-      <Subscribe/>
+      {/*<WhoWeAre/>*/}
+      {/*<Gallery/>*/}
+      {/*<News/>*/}
+      {/*<Subscribe/>*/}
     </>
   );
 }

@@ -4,7 +4,8 @@
   "description": "Server for Organick Store",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "start": "node index"
   },
   "author": "",
   "license": "ISC",

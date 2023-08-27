@@ -49,34 +49,7 @@ export const ProductCategory = styled.div`
   margin-bottom: 0.72rem;
 `
 
-export const ProductPrices = styled.div`
-  display: flex;
-  gap: 0.4rem;
-  align-items: end;
-`
-
-export const ProductPrice = styled.div`
-  color: ${props => props.theme.colors.title};
-  font-family: "Open Sans", sans-serif;
-  font-size: ${props => (props.$fontSize || '1rem')};
-  font-weight: 700;
-`
-
-export const ProductBeforeDiscountPrice = styled(ProductPrice)`
-  color: #B8B8B8;
-  font-size: ${props => (props.$fontSize || '0.83333rem')};
-  font-weight: 600;
-  text-decoration: line-through;
-`
-
-export function Prices({priceCurrent, priceBefore, $priceCurrentFontSize, $priceBeforeFontSize}) {
-  return (
-    <ProductPrices>
-      <ProductBeforeDiscountPrice $fontSize={$priceBeforeFontSize}>${priceBefore}</ProductBeforeDiscountPrice>
-      <ProductPrice $fontSize={$priceCurrentFontSize}>${priceCurrent}</ProductPrice>
-    </ProductPrices>
-  );
-}
+// todo fix styled below
 
 export const CartOrdersListItemQuantityContainer = styled(Title)`
   display: flex;

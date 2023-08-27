@@ -7,7 +7,8 @@ import Home from "./pages/Home/Home";
 import Cart from "./pages/Сart/Cart";
 import NoPage from "./pages/NoPage/NoPage";
 import CompletedOrder from "./pages/CompletedOrder/CompletedOrder";
-import Admin from "./pages/Admin/Admin";
+import Orders from "./pages/Admin/Orders";
+import Products from "./pages/Admin/Products";
 
 function App() {
   return (
@@ -21,10 +22,12 @@ function App() {
             <Route path="completed-order" element={<CompletedOrder/>}/>
             <Route path="*" element={<NoPage/>}/>
           </Route>
-          <Route path="/admin" element={<Admin/>} />
+          <Route path="/admin/orders" element={<Orders/>}/>
+          <Route path="/admin/products" element={<Products/>}/>
         </Routes>
       </BrowserRouter>
-    </ThemeProvider>);
+    </ThemeProvider>
+  );
 }
 
 export default App;

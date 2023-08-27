@@ -7,14 +7,13 @@ import Footer from "../Footer/Footer";
 
 function Layout() {
   return (
-    <ThemeProvider theme={baseTheme}>
-      <GlobalStyles/>
+    <>
       <Header/>
       <main>
         <Outlet/>
       </main>
       <Footer/>
-    </ThemeProvider>
+    </>
   )
 };
 

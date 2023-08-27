@@ -4,12 +4,12 @@ import {
   CorrectedImage,
   Title,
   ProductCategory,
-  ProductPrice,
-  ProductBeforeDiscountPrice,
-  Prices
 } from "../../assets/styles/common";
+import {Prices} from "../../components/Prices/Prices";
+import stars from "../../assets/img/common/stars.svg"
 
-const StyledProductCard = styled.a`
+
+const StyledProductCard = styled.div`
   cursor: pointer;
   width: calc((100% - 3 * 1rem) / 4);
   border-radius: 1.66667rem;
@@ -53,30 +53,25 @@ const ProductStats = styled.div`
   border-top: 1px solid #DEDDDD;
 `
 
-const ProductPrices = styled.div`
-  display: flex;
-  gap: 0.4rem;
-  align-items: end;
-`
-
 const ProductStars = styled.img`
   max-width: 4.6rem;
 `
 
-function ProductCard({category, imageUrl, name, price, priceBefore}) {
+function ProductCard({product}) {
 
   return (
-    <StyledProductCard onClick={(e) => {
-      e.preventDefault();
-      console.log(`Show ${name} details`);
-    }}>
-      <ProductCategory>{category}</ProductCategory>
-      <CorrectedImage src={imageUrl} alt={name}/>
+    <StyledProductCard
+      onClick={(e) => {
+        e.preventDefault();
+        console.log(`Show ${product.name} details`);
+      }}>
+      <ProductCategory>{product.category}</ProductCategory>
+      <CorrectedImage src={product.img_url} alt={product.name}/>
       <ProductInfoContainer>
-        <ProductName>{name}</ProductName>
+        <ProductName>{product.name}</ProductName>
         <ProductStats>
-          <Prices priceBefore={priceBefore} priceCurrent={price} />
-          <ProductStars src="./img/common/stars.svg" alt="5 start"/>
+          <Prices price={product.price} discount={product.discount}/>
+          <ProductStars src={stars} alt="5 start"/>
         </ProductStats>
       </ProductInfoContainer>
     </StyledProductCard>

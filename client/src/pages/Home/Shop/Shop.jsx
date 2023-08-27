@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from "styled-components";
 import {Container, Subtitle, Title} from "../../../assets/styles/common";
-import ProductCard from "../../../features/products/ProductCard";
-import {CustomArrowLink} from "../../../components/CustomButtonLink/CustomButtonLink";
+import {CustomArrowButton, CustomArrowLink} from "../../../components/CustomButtonLink/CustomButtonLink";
+import ProductsList from "../../../features/products/ProductsList";
+import axios from "axios";
 
 const StyledShop = styled(Container)`
   padding-bottom: 9rem;
@@ -18,62 +19,38 @@ const StyledShop = styled(Container)`
 const ShopProducts = styled.div`
   padding-top: 2rem;
   padding-bottom: 6rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
 `
 
 function Shop(props) {
-  // const [products, setProducts] = useState();
+  const [showLess, setShowLess] = useState(true)
+  const [products, setProducts] = useState([]);
+
+  // shows the products with the best discount first
+  useEffect(() => {
+    axios.get(`http://localhost:5000/products?limit=${showLess ? 8 : 16}&ordering=product.discount+desc`)
+      .then(response => {
+        setProducts(response.data);
+      })
+      .catch(error => {
+        console.error('Error while getting products:', error);
+      });
+  }, [showLess]);
+
   return (
     <StyledShop>
       <Subtitle>Categories</Subtitle>
       <Title>Our Products</Title>
       <ShopProducts>
-        <ProductCard
-          category="Fresh"
-          name="Fresh Banana Fruites"
-          imageUrl="./img/shop/fresh-banana-fruites.png"
-          price="14.00"
-          priceBefore="20.00" />
-        <ProductCard
-          category="Health"
-          name="Brown Hazelnut"
-          imageUrl="./img/shop/mung-bean-1.png"
-          price="140.00"
-          priceBefore="20.00" />
-        <ProductCard
-          category="Health"
-          name="Mung Bean"
-          imageUrl="./img/shop/brown-hazelnut.png"
-          price="14.00"
-          priceBefore="20.00" />
-        <ProductCard
-          category="Fresh"
-          name="Fresh Banana Fruites"
-          imageUrl="./img/shop/fresh-banana-fruites.png"
-          price="14.00"
-          priceBefore="20.00" />
-        <ProductCard
-          category="Fresh"
-          name="Fresh Banana Fruites"
-          imageUrl="./img/shop/fresh-banana-fruites.png"
-          price="14.00"
-          priceBefore="20.00" />
-        <ProductCard
-          category="Fresh"
-          name="Fresh Banana Fruites"
-          imageUrl="./img/shop/fresh-banana-fruites.png"
-          price="14.00"
-          priceBefore="20.00" />
+        <ProductsList products={products}/>
       </ShopProducts>
-      <CustomArrowLink
-        href="#"
+      <CustomArrowButton
+        type="button"
         $color="#FFFFFF"
-        $backgroundColor="#1E1E1E"
+        $backgroundColor={showLess ? '#1E1E1E': '#274C5B'}
         $marginLeft="auto"
         $marginRight="auto"
-      >Load More</CustomArrowLink>
+        onClick={() => (showLess ? setShowLess(false) : setShowLess(true))}
+      >{showLess ? 'Load More': 'Show Less'}</CustomArrowButton>
     </StyledShop>
   );
 }

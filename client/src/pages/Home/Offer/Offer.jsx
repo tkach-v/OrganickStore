@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import {Container, Subtitle, Title} from "../../../assets/styles/common";
 import ProductCard from "../../../features/products/ProductCard";
+import ProductsList from "../../../features/products/ProductsList";
+import axios from "axios";
 
 const StyledOffer = styled.div`
   background: #274C5B;
@@ -10,42 +12,29 @@ const StyledOffer = styled.div`
 
 const OfferList = styled.div`
   margin-top: 2.5rem;
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
 `
 
 function Offer() {
+  // shows the 4 newest products from the database
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/products?limit=4&ordering=id+desc')
+      .then(response => {
+        setProducts(response.data.sort((a, b) => a.id - b.id));
+      })
+      .catch(error => {
+        console.error('Error while getting products:', error);
+      });
+  }, []);
+
   return (
     <StyledOffer>
       <Container>
         <Subtitle>Offer</Subtitle>
         <Title $color="#FFFFFF">We Offer Organic For You</Title>
         <OfferList>
-          <ProductCard
-            category="Fresh"
-            name="Fresh Banana Fruites"
-            imageUrl="./img/shop/fresh-banana-fruites.png"
-            price="14.00"
-            priceBefore="20.00" />
-          <ProductCard
-            category="Health"
-            name="Brown Hazelnut"
-            imageUrl="./img/shop/mung-bean-1.png"
-            price="140.00"
-            priceBefore="20.00" />
-          <ProductCard
-            category="Health"
-            name="Mung Bean"
-            imageUrl="./img/shop/brown-hazelnut.png"
-            price="14.00"
-            priceBefore="20.00" />
-          <ProductCard
-            category="Fresh"
-            name="Fresh Banana Fruites"
-            imageUrl="./img/shop/fresh-banana-fruites.png"
-            price="14.00"
-            priceBefore="20.00" />
+          <ProductsList products={products} />
         </OfferList>
       </Container>
     </StyledOffer>
