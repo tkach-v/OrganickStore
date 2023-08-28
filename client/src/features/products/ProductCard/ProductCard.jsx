@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
 import {
   CorrectedImage,
@@ -7,6 +7,7 @@ import {
 } from "../../../assets/styles/common";
 import {Prices} from "../../../components/Prices/Prices";
 import stars from "../../../assets/img/common/stars.svg"
+import ProductModal from "../ProductModal/ProductModal";
 
 
 const StyledProductCard = styled.div`
@@ -58,22 +59,32 @@ const ProductStars = styled.img`
 `
 
 function ProductCard({product}) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <StyledProductCard
-      onClick={() => {
-        console.log(`Show ${product.name} details`);
-      }}>
-      <ProductCategory>{product.category}</ProductCategory>
-      <CorrectedImage src={product.img_url} alt={product.name}/>
-      <ProductInfoContainer>
-        <ProductName>{product.name}</ProductName>
-        <ProductStats>
-          <Prices price={product.price} discount={product.discount}/>
-          <ProductStars src={stars} alt="5 start"/>
-        </ProductStats>
-      </ProductInfoContainer>
-    </StyledProductCard>
+    <>
+      {isModalOpen && (
+        <ProductModal
+          product={product}
+          active={isModalOpen}
+          setActive={setIsModalOpen}
+        />
+      )}
+      <StyledProductCard
+        onClick={() => {
+          setIsModalOpen(true);
+        }}>
+        <ProductCategory>{product.category}</ProductCategory>
+        <CorrectedImage src={product.img_url} alt={product.name}/>
+        <ProductInfoContainer>
+          <ProductName>{product.name}</ProductName>
+          <ProductStats>
+            <Prices price={product.price} discount={product.discount}/>
+            <ProductStars src={stars} alt="5 start"/>
+          </ProductStats>
+        </ProductInfoContainer>
+      </StyledProductCard>
+    </>
   );
 }
 

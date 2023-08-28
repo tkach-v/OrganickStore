@@ -40,25 +40,6 @@ function Shop(props) {
 
   return (
     <StyledShop>
-      {modalActive ? (
-        <ProductModal
-          active={modalActive}
-          setActive={setModalActive}
-          product={{
-            "id": 1,
-            "name": "Calabrese Broccoli",
-            "img_url": "https://organick-store.s3.eu-central-1.amazonaws.com/products/calabrese-broccoli.png",
-            "price": "20.00",
-            "discount": 35,
-            "rate": "5.00",
-            "short_description": "Simply dummy text of the printing and typesetting industry. Lorem had ceased to been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.",
-            "long_description": "A refrigerator is the best place to store pistachios if you don't plan to eat them all right away. Package them in an airtight container (Ziplock, Tupperware, jar with tight lid) and they will stay fresh for up to a year. An airtight package helps prevent condensation, which would make them lose their crunch.",
-            "additional_info": "Welcome to the world of natural and organic. Here you can discover the bounty of nature. We have grown on the principles of health, ecology, and care. We aim to give our customers a healthy chemical-free meal for perfect nutrition. It offers about 8–10% carbs. Simple sugars — such as glucose and fructose — make up 70% and 80% of the carbs in raw.",
-            "category": "Vegetable"
-          }}
-        />
-      ) : null}
-
       <Subtitle>Categories</Subtitle>
       <Title>Our Products</Title>
       <ShopProducts>

@@ -1,6 +1,41 @@
 import React, {useState} from 'react';
-import {CartContent, CartContentInner, CartOrdersList, CartSummaries, CartTitle} from "./styles";
+import CartOrdersList from "../../features/cart/CartOrdersList/CartOrdersList";
+import CartForm from "../../features/cart/CartForm/CartForm";
 import {CustomArrowButton} from "../../components/CustomButtonLink/CustomButtonLink";
+import styled from "styled-components";
+import {Title, Container} from "../../assets/styles/common";
+import titleBackground from "../../assets/img/cart/title-background.jpg"
+
+const CartTitle = styled(Title)`
+  text-align: center;
+  background-image: url("${titleBackground}");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: 9rem ${props => props.theme.container.paddingX};
+  margin-bottom: 5rem;
+  @media (max-width: ${props => props.theme.breakpoints.medium}) {
+    padding: 3rem ${props => props.theme.container.paddingX};
+    margin-bottom: 2rem;
+  }
+`
+
+const CartContent = styled.div`
+  text-align: center;
+  background: rgba(253, 176, 45, 0.16);;
+  padding: 8rem 0 3rem 0;
+  @media (max-width: ${props => props.theme.breakpoints.medium}) {
+    padding: 3rem 0 2rem 0;
+  }
+  color: ${props => props.theme.colors.title};
+  font-family: Roboto, sans-serif;
+  font-size: 1.77778rem;
+  font-weight: 700;
+`
+
+const CartContentInner = styled(Container)`
+  max-width: 1600px;
+`
 
 function Cart(props) {
   const [visibleForm, setVisibleForm] = useState(false);
@@ -8,17 +43,11 @@ function Cart(props) {
   const discount = 14;
 
   return (
-    <div>
+    <>
       <CartTitle>Cart</CartTitle>
       <CartContent>
         <CartContentInner>
-          <CartOrdersList>
-
-          </CartOrdersList>
-          <CartSummaries>
-            <div>Total Cost {total}$</div>
-            <div>Discount {discount}$</div>
-          </CartSummaries>
+          <CartOrdersList/>
           {visibleForm ? null : (
             <CustomArrowButton type="Button"
                                $paddingX="3.2rem"
@@ -28,10 +57,10 @@ function Cart(props) {
                                onClick={(e) => setVisibleForm(true)}
             >To order</CustomArrowButton>
           )}
-          {/*<CartForm visible={visibleForm}/>*/}
+          <CartForm visible={visibleForm}/>
         </CartContentInner>
       </CartContent>
-    </div>
+    </>
   );
 }
 

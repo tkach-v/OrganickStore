@@ -1,87 +1,82 @@
-import React, {useState} from 'react';
-import {CorrectedImage, FormFieldErrorMessage} from "../../assets/styles/common";
-import {
-  CartTitle,
-  CartContent,
-  CartContentInner,
-  CartOrdersList,
-  StyledCartOrdersListItem,
-  CartOrdersListItemInfoContainer,
-  CartOrdersListItemImageContainer,
-  CartSummaries,
-  CartOrdersListItemTitleAndPrice,
-  CartOrdersListItemBeforeDiscount,
-  CartOrdersListItemQuantityContainer,
-  CartOrdersListItemQuantityInput,
-  CartOrdersListItemPriceWrapper,
-  CartFormWrapper,
-  CartFormField,
-  CartFormInput,
-  CartFormFieldsContainer, CartFormFieldWide, CartFormText,
-} from "./styles";
+import React from 'react';
+import {FormFieldErrorMessage, Title} from "../../../assets/styles/common";
 import {ErrorMessage, Form, Formik} from "formik";
 import * as Yup from 'yup';
 import {useNavigate} from "react-router-dom";
-import {CustomArrowButton, CustomButton} from "../../components/CustomButtonLink/CustomButtonLink";
+import {CustomButton} from "../../../components/CustomButtonLink/CustomButtonLink";
+import styled, {css} from "styled-components";
 
-function CartOrdersListItem({name, imageUrl, currentPrice, beforeDiscountPrice, amount}) {
-  const [quantity, setQuantity] = useState(amount);
-  const handleQuantityChange = (event) => {
-    const inputValue = event.target.value;
+const CartFormWrapper = styled(Title)`
+  max-width: 1400px;
+  margin: 5rem auto 0;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.5s ease-in-out;
+  height: ${props => (props.$visible ? 'auto': '0')};
+  opacity: ${props => (props.$visible ? '1': '0')};
+`
 
-    if (inputValue === '' || isNaN(inputValue) || parseInt(inputValue) <= 0) {
-      setQuantity('');
-    } else {
-      setQuantity(inputValue);
-    }
-  };
-  return (
-    <StyledCartOrdersListItem>
-      <CartOrdersListItemInfoContainer>
-        <CartOrdersListItemImageContainer>
-          <CorrectedImage src={imageUrl} alt={name + 'image'}/>
-        </CartOrdersListItemImageContainer>
-        <CartOrdersListItemTitleAndPrice>
-          <div>{name}</div>
-          <CartOrdersListItemPriceWrapper>
-            <CartOrdersListItemBeforeDiscount>
-              <span>$</span>
-              <span
-                style={{textDecoration: 'line-through', textDecorationThickness: '4px'}}>{beforeDiscountPrice}</span>
-            </CartOrdersListItemBeforeDiscount>
-            <div>${currentPrice}</div>
-          </CartOrdersListItemPriceWrapper>
-        </CartOrdersListItemTitleAndPrice>
-      </CartOrdersListItemInfoContainer>
-      <CartOrdersListItemQuantityContainer>
-        <div>Quantity:</div>
-        <CartOrdersListItemQuantityInput
-          type="number"
-          value={quantity}
-          onChange={handleQuantityChange}
-        />
-        <CustomButton type="button"
-                      $color="#FFFFFF"
-                      $backgroundColor={props => props.theme.colors.title}
-                      $paddingY="1rem"
-                      $paddingX="2rem"
-                      onClick={() => console.log(`Remove ${name} from cart`)}
-        >X</CustomButton>
-      </CartOrdersListItemQuantityContainer>
-    </StyledCartOrdersListItem>
-  );
-}
+const CartFormFieldsContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+  gap: 2.5rem;
+  @media (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+`
+
+const CartFormField = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 0.8rem;
+  
+`
+
+const CartFormFieldWide = styled(CartFormField)`
+  grid-column: span 2;
+`
+
+const CartFormInputStyles = css`
+  color: ${props => props.theme.colors.title};
+  font-family: Roboto, sans-serif;
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 400;
+  border-radius: 0.88889rem;
+  border: 1px solid ${props => (props.$isError ? props.theme.colors.error : '#7EB693')} ;
+  background: #FFF;
+  padding: 1.5rem 1.2rem;
+  width: 100%;
+  &::placeholder {
+    color: #ABABAB;
+  }
+`
+
+const CartFormInput = styled.input`
+  ${CartFormInputStyles}
+`
+
+const CartFormText = styled.textarea`
+  resize: none;
+  ${CartFormInputStyles}
+`
 
 function CartForm({visible}) {
   const navigate = useNavigate();
   const validationSchema = Yup.object().shape({
     fullName: Yup.string()
+      .min(2, 'Must be at least 2 characters')
       .matches(/^[^\d_!@#$%^&*()+=[\]{}|\\:;"'<>,.?/`~]*$/, 'Invalid characters in full name')
       .required('Required'),
     email: Yup.string()
       .email('Enter a valid email')
       .required('Required'),
     address: Yup.string()
+      .min(2, 'Must be at least 2 characters')
       .typeError('Must be a string')
       .required('Required'),
     phone: Yup.string()
@@ -190,43 +185,4 @@ function CartForm({visible}) {
   );
 }
 
-function Cart() {
-  const [visibleForm, setVisibleForm] = useState(false);
-  const total = 26;
-  const discount = 14;
-
-  return (
-    <div>
-      <CartTitle>Cart</CartTitle>
-      <CartContent>
-        <CartContentInner>
-          <CartOrdersList>
-            <CartOrdersListItem
-              name="Health Pistachios"
-              imageUrl="./img/shop/mung-bean-1.png"
-              currentPrice="50"
-              beforeDiscountPrice="100"
-              amount={1}
-            />
-          </CartOrdersList>
-          <CartSummaries>
-            <div>Total Cost {total}$</div>
-            <div>Discount {discount}$</div>
-          </CartSummaries>
-          {visibleForm ? null : (
-            <CustomArrowButton type="Button"
-                               $paddingX="3.2rem"
-                               $marginTop="4rem"
-                               $color="#FFFFFF"
-                               $backgroundColor={props => props.theme.colors.title}
-                               onClick={(e) => setVisibleForm(true)}
-            >To order</CustomArrowButton>
-          )}
-          <CartForm visible={visibleForm}/>
-        </CartContentInner>
-      </CartContent>
-    </div>
-  );
-}
-
-export default Cart;
+export default CartForm;
