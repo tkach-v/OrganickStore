@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {QuantityInput, QuantityFormRowOuter} from "../../../assets/styles/common";
 
 
 export const StyledCartOrdersListItem = styled.div`
@@ -54,7 +55,7 @@ export const CartOrdersListItemTitleAndPrice = styled.div`
   display: flex;
   align-items: end;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.8rem;
   font-size: 2.22222rem;
   font-weight: 600;
   @media (max-width: 1200px) {
@@ -63,67 +64,19 @@ export const CartOrdersListItemTitleAndPrice = styled.div`
   @media (max-width: 550px) {
     font-size: 1.4rem;
   }
-
 `
-export const CartOrdersListItemPriceWrapper = styled.div`
-  display: flex;
-  align-items: end;
-  gap: 1rem;
+
+export const CartQuantityFormRowOuter = styled(QuantityFormRowOuter)`
+  @media (max-width: 600px) {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+`
+
+export const CartQuantityInput = styled(QuantityInput)`
   @media (max-width: 550px) {
-    flex-direction: column;
-    align-items: start;
-    gap: 0;
-  }
-`
-
-export const CartOrdersListItemBeforeDiscount = styled.div`
-  color: #B8B8B8;
-  font-size: 1.33333rem;
-  font-weight: 700;
-  @media (max-width: 1200px) {
-    font-size: 1.1rem;
-  }
-`
-
-export const CartOrdersListItemQuantityContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
-  position: relative;
-  @media (max-width: 1200px) {
-    font-size: 1.5rem;
-    gap: 1rem;
-  }
-  @media (max-width: 550px) {
-    font-size: 1.2rem;
-    gap: 0.5rem;
-  }
-`
-
-export const CartOrdersListItemQuantityInput = styled.input`
-  text-align: center;
-  display: flex;
-  padding: 1.5rem 1rem;
-  border-radius: 0.88889rem;
-  border: 2px solid #274C5B;
-  background: #FFF;
-  color: rgba(39, 76, 91, 0.4);
-  font-family: Roboto, sans-serif;
-  font-size: 1.11111rem;
-  font-weight: 700;
-  max-width: 7rem;
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  &[type=number] {
-    -moz-appearance: textfield;
-  }
-
-  @media (max-width: 550px) {
-    max-width: 5rem;
-    font-size: 1rem;
-    padding: 1rem 0.2rem;
+    padding: 1rem 0.5rem;
+    max-width: 4.5rem;
   }
 `

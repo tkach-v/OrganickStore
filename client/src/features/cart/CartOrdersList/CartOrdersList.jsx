@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
+import CartOrdersListItem from "../CartOrdersListItem/CartOrdersListItem";
 
 export const StyledCartOrdersList = styled.div`
   display: flex;
@@ -26,13 +27,18 @@ export const CartSummaries = styled.div`
   }
 `
 
-function CartOrdersList(props) {
+function CartOrdersList({ordersItems}) {
   const total = 26;
   const discount = 14;
   return (
     <div>
       <StyledCartOrdersList>
-
+        {ordersItems.map(item => (
+          <CartOrdersListItem
+            key={item.product_id}
+            item={item}
+          />
+        ))}
       </StyledCartOrdersList>
       <CartSummaries>
         <div>Total Cost {total}$</div>

@@ -1,6 +1,6 @@
 const db = require('../services/db.service');
 
-async function getProducts(req, res, next) {
+async function getManyProducts(req, res, next) {
   try {
     const limit = parseInt(req.query.limit);
     const limitClause = limit && limit > 0 ? `LIMIT ${limit}` : '';
@@ -20,7 +20,7 @@ async function getProducts(req, res, next) {
             category.name as category
         FROM product, category
         WHERE product.category_id=category.id
-        ORDER BY ${orderClause}, product.id ASC ${limitClause};
+        ORDER BY ${orderClause}, product.id ${limitClause};
     `);
 
     res.json(products);
@@ -30,6 +30,27 @@ async function getProducts(req, res, next) {
   }
 }
 
+async function getOneProduct(req, res, next) {
+  const productId = req.params.id;
+  try {
+    const [product, ] = await db.query(`
+        SELECT *
+        FROM product
+        WHERE id = ?
+    `, [productId]);
+
+    if (product === undefined) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
+    res.json(product);
+  } catch (err) {
+    console.error(`Error while getting product`, err.message);
+    next(err);
+  }
+}
+
 module.exports = {
-  getAllProducts: getProducts,
+  getManyProducts,
+  getOneProduct
 };

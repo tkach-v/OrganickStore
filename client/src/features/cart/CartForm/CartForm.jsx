@@ -12,8 +12,6 @@ const CartFormWrapper = styled(Title)`
   font-size: 1rem;
   font-weight: 600;
   transition: all 0.5s ease-in-out;
-  height: ${props => (props.$visible ? 'auto': '0')};
-  opacity: ${props => (props.$visible ? '1': '0')};
 `
 
 const CartFormFieldsContainer = styled.div`

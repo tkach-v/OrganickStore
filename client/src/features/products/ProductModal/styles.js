@@ -78,31 +78,6 @@ export const ModalProductTitle = styled(Title)`
   padding-bottom: 0.5rem;
 `
 
-export const QuantityFormField = styled(Title)`
-  font-size: 1.11111rem;
-  font-weight: 700;
-  display: flex;
-  flex-direction: column;
-`
-
-const QuantityFormRow = css`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-`
-
-export const QuantityFormRowInner = styled.div`
-  ${QuantityFormRow}
-`
-
-export const QuantityFormRowOuter = styled.div`
-  @media (max-width: 600px) {
-    flex-direction: column;
-    align-items: start;
-  }
-  ${QuantityFormRow}
-`
-
 export const ModalMoreInfo = styled.div`
   margin-top: 4rem;
   text-align: center;

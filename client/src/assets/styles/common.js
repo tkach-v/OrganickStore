@@ -1,5 +1,4 @@
-import styled from "styled-components";
-import React, {useState} from "react";
+import styled, {css} from "styled-components";
 
 export const Container = styled.div`
   max-width: ${props => props.theme.container.maxWidth};
@@ -49,7 +48,7 @@ export const ProductCategory = styled.div`
   margin-bottom: 0.72rem;
 `
 
-export const ProductQuantityInput = styled.input`
+export const QuantityInput = styled.input`
   text-align: center;
   padding: 1.4rem 1rem;
   border-radius: 0.88889rem;
@@ -76,4 +75,29 @@ export const FormFieldErrorMessage = styled.div`
   font-style: italic;
   color: ${props => props.theme.colors.error};
   font-weight: 400;
+`
+
+export const QuantityFormField = styled(Title)`
+  font-size: 1.11111rem;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+`
+
+const QuantityFormRow = css`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+`
+
+export const QuantityFormRowInner = styled.div`
+  ${QuantityFormRow}
+`
+
+export const QuantityFormRowOuter = styled.div`
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: start;
+  }
+  ${QuantityFormRow}
 `

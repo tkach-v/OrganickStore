@@ -1,61 +1,107 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {
-  CartOrdersListItemBeforeDiscount,
   CartOrdersListItemImageContainer,
   CartOrdersListItemInfoContainer,
-  CartOrdersListItemPriceWrapper,
-  CartOrdersListItemQuantityContainer,
-  CartOrdersListItemQuantityInput,
-  CartOrdersListItemTitleAndPrice,
+  CartOrdersListItemTitleAndPrice, CartQuantityFormRowOuter, CartQuantityInput,
   StyledCartOrdersListItem
 } from "./styles";
-import {CorrectedImage} from "../../../assets/styles/common";
+import {CorrectedImage, FormFieldErrorMessage, QuantityFormField, QuantityFormRowInner} from "../../../assets/styles/common";
 import {CustomButton} from "../../../components/CustomButtonLink/CustomButtonLink";
+import {Prices} from "../../../components/Prices/Prices";
+import axios from "axios";
+import * as Yup from "yup";
+import {ErrorMessage, Form, Formik} from "formik";
 
-function CartOrdersListItem({name, imageUrl, currentPrice, beforeDiscountPrice, amount}) {
-  const [quantity, setQuantity] = useState(amount);
-  const handleQuantityChange = (event) => {
-    const inputValue = event.target.value;
+function QuantityForm({quantity, setQuantity}) {
+  const validationSchema = Yup.object().shape({
+    quantity: Yup.number()
+      .required('Required')
+      .min(1, 'Quantity must be greater than 0')
+      .typeError('Must be a valid number')
+  })
+  return (
+    <Formik
+      initialValues={{
+        quantity: quantity,
+      }}
+      validateOnBlur
+      validationSchema={validationSchema}
+      onBlur={(values) => {
+        setQuantity(values.quantity);
+      }}
+    >
+      {({values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty}) => (
+        <Form>
+          <QuantityFormField>
+            <CartQuantityFormRowOuter>
+              <QuantityFormRowInner>
+                <label htmlFor="quantity">Quantity:</label>
+                <CartQuantityInput
+                  type="text"
+                  name="quantity"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.quantity}
+                  $isError={touched.quantity && errors.quantity}
+                />
+              </QuantityFormRowInner>
+              <CustomButton
+                type="button"
+                $color="#FFFFFF"
+                $backgroundColor={props => props.theme.colors.title}
+                $paddingY="1rem"
+                $paddingX="2rem"
+                onClick={() => console.log(`Remove item from cart`)}
+              >X</CustomButton>
+            </CartQuantityFormRowOuter>
+            <ErrorMessage
+              name="quantity"
+              component={FormFieldErrorMessage}
+              style={{marginTop: "0.5rem"}}/>
+          </QuantityFormField>
+        </Form>
+      )}
+    </Formik>
+  );
+}
 
-    if (inputValue === '' || isNaN(inputValue) || parseInt(inputValue) <= 0) {
-      setQuantity('');
-    } else {
-      setQuantity(inputValue);
-    }
-  };
+function CartOrdersListItem({item}) {
+  const [quantity, setQuantity] = useState(item.quantity);
+  const [ordersListItem, setOrdersListItem] = useState({});
+
+  // get orders list item
+  useEffect(() => {
+    axios.get(`http://localhost:5000/products/${item.product_id}`)
+      .then(response => {
+        setOrdersListItem(response.data);
+      })
+      .catch(error => {
+        console.error('Error while getting product:', error);
+      });
+  }, []);
+
+  const isSmallScreen = window.matchMedia('(max-width: 550px)').matches;
+
+  const priceBeforeFontSize = isSmallScreen ? '1rem' : '1.33333rem';
+  const priceCurrentFontSize = isSmallScreen ? '1.4rem' : '2.22222rem';
+
   return (
     <StyledCartOrdersListItem>
       <CartOrdersListItemInfoContainer>
         <CartOrdersListItemImageContainer>
-          <CorrectedImage src={imageUrl} alt={name + 'image'}/>
+          <CorrectedImage src={ordersListItem.img_url} alt={ordersListItem.name}/>
         </CartOrdersListItemImageContainer>
         <CartOrdersListItemTitleAndPrice>
-          <div>{name}</div>
-          <CartOrdersListItemPriceWrapper>
-            <CartOrdersListItemBeforeDiscount>
-              <span>$</span>
-              <span
-                style={{textDecoration: 'line-through', textDecorationThickness: '4px'}}>{beforeDiscountPrice}</span>
-            </CartOrdersListItemBeforeDiscount>
-            <div>${currentPrice}</div>
-          </CartOrdersListItemPriceWrapper>
+          <div>{ordersListItem.name}</div>
+          <Prices
+            price={ordersListItem.price}
+            discount={ordersListItem.discount}
+            $priceBeforeFontSize={priceBeforeFontSize}
+            $priceCurrentFontSize={priceCurrentFontSize}
+          />
         </CartOrdersListItemTitleAndPrice>
       </CartOrdersListItemInfoContainer>
-      <CartOrdersListItemQuantityContainer>
-        <div>Quantity:</div>
-        <CartOrdersListItemQuantityInput
-          type="number"
-          value={quantity}
-          onChange={handleQuantityChange}
-        />
-        <CustomButton type="button"
-                      $color="#FFFFFF"
-                      $backgroundColor={props => props.theme.colors.title}
-                      $paddingY="1rem"
-                      $paddingX="2rem"
-                      onClick={() => console.log(`Remove ${name} from cart`)}
-        >X</CustomButton>
-      </CartOrdersListItemQuantityContainer>
+      <QuantityForm quantity={quantity} setQuantity={setQuantity}/>
     </StyledCartOrdersListItem>
   );
 }

@@ -3,6 +3,7 @@ import React from "react";
 
 export const ProductPrices = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 0.4rem;
   align-items: end;
 `

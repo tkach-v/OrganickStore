@@ -2,8 +2,11 @@ import React, {useState} from 'react';
 import {
   Container,
   CorrectedImage, FormFieldErrorMessage,
-  ProductQuantityInput,
+  QuantityInput,
   Text,
+  QuantityFormField,
+  QuantityFormRowInner,
+  QuantityFormRowOuter
 } from "../../../assets/styles/common";
 import {Prices} from "../../../components/Prices/Prices";
 import {CustomArrowButton, CustomButton} from "../../../components/CustomButtonLink/CustomButtonLink";
@@ -20,13 +23,12 @@ import {
   ModalProductCategory,
   ModalShortInfoContent,
   ModalProductTitle,
-  QuantityFormField,
   ModalMoreInfo,
   ModalMoreInfoButtons,
-  ModalMoreInfoText, QuantityFormRowOuter, QuantityFormRowInner
+  ModalMoreInfoText,
 } from "./styles";
 
-function QuantityForm() {
+function QuantityForm({quantity}) {
   const validationSchema = Yup.object().shape({
     quantity: Yup.number()
       .required('Required')
@@ -36,7 +38,7 @@ function QuantityForm() {
   return (
     <Formik
       initialValues={{
-        quantity: 1,
+        quantity: quantity,
       }}
       validateOnBlur
       validationSchema={validationSchema}
@@ -50,13 +52,13 @@ function QuantityForm() {
             <QuantityFormRowOuter>
               <QuantityFormRowInner>
                 <label htmlFor="quantity">Quantity:</label>
-                <ProductQuantityInput
+                <QuantityInput
                   type="text"
                   name="quantity"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.quantity}
-                  $isError={touched.fullName && errors.fullName}
+                  $isError={touched.quantity && errors.quantity}
                 />
               </QuantityFormRowInner>
               <CustomArrowButton
@@ -115,7 +117,7 @@ function ProductModal({product, active, setActive}) {
                 $marginTop="1.5rem"
                 $marginBottom="1.8rem"
               >{product.short_description}</Text>
-              <QuantityForm/>
+              <QuantityForm quantity={1}/>
             </ModalShortInfoContent>
           </ModalShortInfo>
           <ModalMoreInfo>

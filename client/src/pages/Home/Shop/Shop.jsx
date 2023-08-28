@@ -25,7 +25,6 @@ const ShopProducts = styled.div`
 function Shop(props) {
   const [showLess, setShowLess] = useState(true)
   const [products, setProducts] = useState([]);
-  const [modalActive, setModalActive] = useState(true);
 
   // shows the products with the best discount first
   useEffect(() => {

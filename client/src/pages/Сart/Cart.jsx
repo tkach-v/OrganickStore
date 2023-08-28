@@ -39,25 +39,36 @@ const CartContentInner = styled(Container)`
 
 function Cart(props) {
   const [visibleForm, setVisibleForm] = useState(false);
-  const total = 26;
-  const discount = 14;
+  const productsList = [{
+    "product_id": 1,
+    "quantity": 12,
+  }, {
+    "product_id": 2,
+    "quantity": 1,
+  }, {
+    "product_id": 16,
+    "quantity": 4,
+  }]
 
   return (
     <>
       <CartTitle>Cart</CartTitle>
       <CartContent>
         <CartContentInner>
-          <CartOrdersList/>
+          <CartOrdersList ordersItems={productsList}/>
           {visibleForm ? null : (
-            <CustomArrowButton type="Button"
-                               $paddingX="3.2rem"
-                               $marginTop="4rem"
-                               $color="#FFFFFF"
-                               $backgroundColor={props => props.theme.colors.title}
-                               onClick={(e) => setVisibleForm(true)}
+            <CustomArrowButton
+              type="button"
+              $paddingX="3.2rem"
+              $marginTop="4rem"
+              $color="#FFFFFF"
+              $backgroundColor={props => props.theme.colors.title}
+              onClick={() => setVisibleForm(true)}
             >To order</CustomArrowButton>
           )}
-          <CartForm visible={visibleForm}/>
+          {visibleForm &&
+            <CartForm/>
+          }
         </CartContentInner>
       </CartContent>
     </>
