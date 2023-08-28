@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import {Container, Subtitle, Title} from "../../../assets/styles/common";
-import ProductCard from "../../../features/products/ProductCard";
-import ProductsList from "../../../features/products/ProductsList";
+import ProductCard from "../../../features/products/ProductCard/ProductCard";
+import ProductsList from "../../../features/products/ProductList/ProductsList";
 import axios from "axios";
 
 const StyledOffer = styled.div`

@@ -2,9 +2,9 @@ import React, {useState, useEffect} from 'react';
 import styled from "styled-components";
 import {Container, Subtitle, Title} from "../../../assets/styles/common";
 import {CustomArrowButton, CustomArrowLink} from "../../../components/CustomButtonLink/CustomButtonLink";
-import ProductsList from "../../../features/products/ProductsList";
+import ProductsList from "../../../features/products/ProductList/ProductsList";
 import axios from "axios";
-import ProductModal from "../../../features/products/ProductModal";
+import ProductModal from "../../../features/products/ProductModal/ProductModal";
 
 const StyledShop = styled(Container)`
   padding-bottom: 9rem;

@@ -49,21 +49,7 @@ export const ProductCategory = styled.div`
   margin-bottom: 0.72rem;
 `
 
-// todo fix styled below
-
-export const CartOrdersListItemQuantityContainer = styled(Title)`
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
-  position: relative;
-  font-size: 1.11111rem;
-  font-weight: 700;
-  @media (max-width: 1200px) {
-    
-  }
-`
-
-export const CartOrdersListItemQuantityInput = styled.input`
+export const ProductQuantityInput = styled.input`
   text-align: center;
   padding: 1.4rem 1rem;
   border-radius: 0.88889rem;
@@ -84,30 +70,10 @@ export const CartOrdersListItemQuantityInput = styled.input`
   &[type=number] {
     -moz-appearance: textfield;
   }
-
-  @media (max-width: 550px) {
-    max-width: 5rem;
-    font-size: 1rem;
-    padding: 1rem 0.2rem;
-  }
 `
 
-export function ProductQuantity({amount}) {
-  const [quantity, setQuantity] = useState(amount);
-  const handleQuantityChange = (event) => {
-    const inputValue = event.target.value;
-
-    if (inputValue === '' || isNaN(inputValue) || parseInt(inputValue) <= 0) {
-      setQuantity('');
-    } else {
-      setQuantity(inputValue);
-    }
-  };
-  return (
-    <CartOrdersListItemQuantityInput
-      type="number"
-      value={quantity}
-      onChange={handleQuantityChange}
-    />
-  );
-}
+export const FormFieldErrorMessage = styled.div`
+  font-style: italic;
+  color: ${props => props.theme.colors.error};
+  font-weight: 400;
+`

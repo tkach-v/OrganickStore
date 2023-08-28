@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {CorrectedImage} from "../../assets/styles/common";
+import {CorrectedImage, FormFieldErrorMessage} from "../../assets/styles/common";
 import {
   CartTitle,
   CartContent,
@@ -17,7 +17,7 @@ import {
   CartFormWrapper,
   CartFormField,
   CartFormInput,
-  CartFormError, CartFormFieldsContainer, CartFormFieldWide, CartFormText,
+  CartFormFieldsContainer, CartFormFieldWide, CartFormText,
 } from "./styles";
 import {ErrorMessage, Form, Formik} from "formik";
 import * as Yup from 'yup';
@@ -120,7 +120,7 @@ function CartForm({visible}) {
                   value={values.fullName}
                   $isError={touched.fullName && errors.fullName}
                 />
-                <ErrorMessage name="fullName" component={CartFormError}/>
+                <ErrorMessage name="fullName" component={FormFieldErrorMessage}/>
               </CartFormField>
               <CartFormField>
                 <label htmlFor="fullName">Your Email*</label>
@@ -133,7 +133,7 @@ function CartForm({visible}) {
                   value={values.email}
                   $isError={touched.email && errors.email}
                 />
-                <ErrorMessage name="email" component={CartFormError}/>
+                <ErrorMessage name="email" component={FormFieldErrorMessage}/>
               </CartFormField>
               <CartFormField>
                 <label htmlFor="fullName">Address*</label>
@@ -146,7 +146,7 @@ function CartForm({visible}) {
                   value={values.address}
                   $isError={touched.address && errors.address}
                 />
-                <ErrorMessage name="address" component={CartFormError}/>
+                <ErrorMessage name="address" component={FormFieldErrorMessage}/>
               </CartFormField>
               <CartFormField>
                 <label htmlFor="fullName">Phone number*</label>
@@ -159,7 +159,7 @@ function CartForm({visible}) {
                   value={values.phone}
                   $isError={touched.phone && errors.phone}
                 />
-                <ErrorMessage name="phone" component={CartFormError}/>
+                <ErrorMessage name="phone" component={FormFieldErrorMessage}/>
               </CartFormField>
               <CartFormFieldWide>
                 <label htmlFor="fullName">Message</label>
@@ -190,7 +190,7 @@ function CartForm({visible}) {
   );
 }
 
-function Carts() {
+function Cart() {
   const [visibleForm, setVisibleForm] = useState(false);
   const total = 26;
   const discount = 14;
@@ -229,4 +229,4 @@ function Carts() {
   );
 }
 
-export default Carts;
+export default Cart;

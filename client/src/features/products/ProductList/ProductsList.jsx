@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import ProductCard from "./ProductCard";
+import ProductCard from "../ProductCard/ProductCard";
 
 const StyledProductsList = styled.div`
   display: flex;

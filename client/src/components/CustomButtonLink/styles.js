@@ -25,6 +25,7 @@ export const ButtonStyles = css`
 export const LinkContent = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
 `
 

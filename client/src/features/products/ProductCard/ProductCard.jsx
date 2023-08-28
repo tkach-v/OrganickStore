@@ -4,9 +4,9 @@ import {
   CorrectedImage,
   Title,
   ProductCategory,
-} from "../../assets/styles/common";
-import {Prices} from "../../components/Prices/Prices";
-import stars from "../../assets/img/common/stars.svg"
+} from "../../../assets/styles/common";
+import {Prices} from "../../../components/Prices/Prices";
+import stars from "../../../assets/img/common/stars.svg"
 
 
 const StyledProductCard = styled.div`

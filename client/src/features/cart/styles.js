@@ -254,9 +254,3 @@ export const CartFormText = styled.textarea`
   resize: none;
   ${CartFormInputStyles}
 `
-
-export const CartFormError = styled.div`
-  font-style: italic;
-  color: ${props => props.theme.colors.error};
-  font-weight: 400;
-`
