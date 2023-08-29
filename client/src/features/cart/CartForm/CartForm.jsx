@@ -6,7 +6,8 @@ import {useNavigate} from "react-router-dom";
 import {CustomButton} from "../../../components/CustomButtonLink/CustomButtonLink";
 import styled, {css} from "styled-components";
 import axios from "axios";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {removeAll} from "../cartSlice";
 
 const CartFormWrapper = styled(Title)`
   max-width: 1400px;
@@ -67,7 +68,8 @@ const CartFormText = styled.textarea`
 `
 
 function CartForm({visible}) {
-  const products = useSelector(state => state.cart.items)
+  const products = useSelector(state => state.cart.items);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const validationSchema = Yup.object().shape({
     fullName: Yup.string()
@@ -104,10 +106,11 @@ function CartForm({visible}) {
           console.log(postData)
           axios.post('http://localhost:5000/orders', postData)
             .then(response => {
+              dispatch(removeAll());
               window.scrollTo(0, 0);
               navigate('/completed-order');
             }).catch(error => {
-              alert("Error:", error)
+              alert(`Error: ${error}`);
             }
           );
         }}
