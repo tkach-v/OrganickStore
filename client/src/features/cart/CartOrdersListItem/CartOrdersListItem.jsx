@@ -11,11 +11,15 @@ import {Prices} from "../../../components/Prices/Prices";
 import axios from "axios";
 import * as Yup from "yup";
 import {ErrorMessage, Form, Formik} from "formik";
+import {useDispatch} from "react-redux";
+import {removeItem, updateItem} from "../cartSlice";
 
-function QuantityForm({quantity, setQuantity}) {
+function QuantityForm({quantity, product_id}) {
+  const dispatch = useDispatch();
   const validationSchema = Yup.object().shape({
     quantity: Yup.number()
       .required('Required')
+      .integer('Must be an integer')
       .min(1, 'Quantity must be greater than 0')
       .typeError('Must be a valid number')
   })
@@ -26,9 +30,7 @@ function QuantityForm({quantity, setQuantity}) {
       }}
       validateOnBlur
       validationSchema={validationSchema}
-      onBlur={(values) => {
-        setQuantity(values.quantity);
-      }}
+      onSubmit={() => {}}
     >
       {({values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty}) => (
         <Form>
@@ -40,7 +42,15 @@ function QuantityForm({quantity, setQuantity}) {
                   type="text"
                   name="quantity"
                   onChange={handleChange}
-                  onBlur={handleBlur}
+                  onBlur={e => {
+                    handleBlur(e)
+                    if (!touched.quantity || !errors.quantity) {
+                      dispatch(updateItem({
+                        'product_id': product_id,
+                        'quantity': Number(values.quantity)
+                      }));
+                    }
+                  }}
                   value={values.quantity}
                   $isError={touched.quantity && errors.quantity}
                 />
@@ -51,7 +61,7 @@ function QuantityForm({quantity, setQuantity}) {
                 $backgroundColor={props => props.theme.colors.title}
                 $paddingY="1rem"
                 $paddingX="2rem"
-                onClick={() => console.log(`Remove item from cart`)}
+                onClick={() => dispatch(removeItem(product_id))}
               >X</CustomButton>
             </CartQuantityFormRowOuter>
             <ErrorMessage
@@ -101,7 +111,7 @@ function CartOrdersListItem({item}) {
           />
         </CartOrdersListItemTitleAndPrice>
       </CartOrdersListItemInfoContainer>
-      <QuantityForm quantity={quantity} setQuantity={setQuantity}/>
+      <QuantityForm quantity={quantity} setQuantity={setQuantity} product_id={item.product_id}/>
     </StyledCartOrdersListItem>
   );
 }

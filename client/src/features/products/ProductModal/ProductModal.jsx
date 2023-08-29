@@ -27,23 +27,31 @@ import {
   ModalMoreInfoButtons,
   ModalMoreInfoText,
 } from "./styles";
+import {useSelector, useDispatch} from "react-redux";
+import {addItem} from "../../cart/cartSlice";
 
-function QuantityForm({quantity}) {
+function QuantityForm({product_id}) {
+  const cartItem = useSelector(state => state.cart.items.find(item => item.product_id === product_id));
+  const dispatch = useDispatch();
   const validationSchema = Yup.object().shape({
     quantity: Yup.number()
       .required('Required')
+      .integer('Must be an integer')
       .min(1, 'Quantity must be greater than 0')
       .typeError('Must be a valid number')
   })
   return (
     <Formik
       initialValues={{
-        quantity: quantity,
+        quantity: cartItem ? cartItem.quantity : 1,
       }}
       validateOnBlur
       validationSchema={validationSchema}
       onSubmit={(values) => {
-        console.log(values);
+        dispatch(addItem({
+          'product_id': product_id,
+          'quantity': Number(values.quantity)
+        }));
       }}
     >
       {({values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty}) => (
@@ -117,7 +125,7 @@ function ProductModal({product, active, setActive}) {
                 $marginTop="1.5rem"
                 $marginBottom="1.8rem"
               >{product.short_description}</Text>
-              <QuantityForm quantity={1}/>
+              <QuantityForm product_id={product.id} />
             </ModalShortInfoContent>
           </ModalShortInfo>
           <ModalMoreInfo>

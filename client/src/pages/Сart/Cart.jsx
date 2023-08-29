@@ -5,6 +5,7 @@ import {CustomArrowButton} from "../../components/CustomButtonLink/CustomButtonL
 import styled from "styled-components";
 import {Title, Container} from "../../assets/styles/common";
 import titleBackground from "../../assets/img/cart/title-background.jpg"
+import {useSelector} from "react-redux";
 
 const CartTitle = styled(Title)`
   text-align: center;
@@ -39,23 +40,14 @@ const CartContentInner = styled(Container)`
 
 function Cart(props) {
   const [visibleForm, setVisibleForm] = useState(false);
-  const productsList = [{
-    "product_id": 1,
-    "quantity": 12,
-  }, {
-    "product_id": 2,
-    "quantity": 1,
-  }, {
-    "product_id": 16,
-    "quantity": 4,
-  }]
+  const itemsList = useSelector(state => state.cart.items);
 
   return (
     <>
       <CartTitle>Cart</CartTitle>
       <CartContent>
         <CartContentInner>
-          <CartOrdersList ordersItems={productsList}/>
+          <CartOrdersList ordersItems={itemsList}/>
           {visibleForm ? null : (
             <CustomArrowButton
               type="button"

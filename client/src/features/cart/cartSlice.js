@@ -14,7 +14,7 @@ export const cartSlice = createSlice({
         (item) => item.product_id === product_id
       );
       if (existingItem) {
-        existingItem.quantity += quantity;
+        existingItem.quantity = quantity;
       } else {
         state.items.push(action.payload);
       }
@@ -24,11 +24,15 @@ export const cartSlice = createSlice({
         (item) => item.product_id !== action.payload
       );
     },
+    updateItem: (state, action) => {
+      const {product_id, quantity} = action.payload;
+      const currentItem = state.items.find(
+        (item) => item.product_id === product_id
+      );
+      currentItem.quantity = quantity;
+    },
   }
 });
 
-export const {addItem, removeItem} = cartSlice.actions;
-
-export const selectCartItems = state => state.cart.items;
-
+export const {addItem, removeItem, updateItem} = cartSlice.actions;
 export default cartSlice.reducer;
