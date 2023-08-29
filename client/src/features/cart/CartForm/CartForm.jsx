@@ -5,6 +5,8 @@ import * as Yup from 'yup';
 import {useNavigate} from "react-router-dom";
 import {CustomButton} from "../../../components/CustomButtonLink/CustomButtonLink";
 import styled, {css} from "styled-components";
+import axios from "axios";
+import {useSelector} from "react-redux";
 
 const CartFormWrapper = styled(Title)`
   max-width: 1400px;
@@ -31,7 +33,7 @@ const CartFormField = styled.div`
   flex-direction: column;
   align-items: start;
   gap: 0.8rem;
-  
+
 `
 
 const CartFormFieldWide = styled(CartFormField)`
@@ -45,10 +47,11 @@ const CartFormInputStyles = css`
   font-style: italic;
   font-weight: 400;
   border-radius: 0.88889rem;
-  border: 1px solid ${props => (props.$isError ? props.theme.colors.error : '#7EB693')} ;
+  border: 1px solid ${props => (props.$isError ? props.theme.colors.error : '#7EB693')};
   background: #FFF;
   padding: 1.5rem 1.2rem;
   width: 100%;
+
   &::placeholder {
     color: #ABABAB;
   }
@@ -64,6 +67,7 @@ const CartFormText = styled.textarea`
 `
 
 function CartForm({visible}) {
+  const products = useSelector(state => state.cart.items)
   const navigate = useNavigate();
   const validationSchema = Yup.object().shape({
     fullName: Yup.string()
@@ -94,9 +98,18 @@ function CartForm({visible}) {
         validateOnBlur
         validationSchema={validationSchema}
         onSubmit={(values) => {
-          console.log(values);
-          window.scrollTo(0, 0);
-          navigate('/completed-order');
+          const postData = {...values,
+            products: [...products]
+          }
+          console.log(postData)
+          axios.post('http://localhost:5000/orders', postData)
+            .then(response => {
+              window.scrollTo(0, 0);
+              navigate('/completed-order');
+            }).catch(error => {
+              alert("Error:", error)
+            }
+          );
         }}
       >
         {({values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty}) => (

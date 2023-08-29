@@ -28,7 +28,7 @@ async function getAllOrders(req, res, next) {
 
 async function addOrder(req, res, next) {
   const {
-    full_name,
+    fullName,
     email,
     address,
     phone,
@@ -62,7 +62,7 @@ async function addOrder(req, res, next) {
         INSERT INTO orders (full_name, email, address, phone, message)
         VALUES (?, ?, ?, ?, ?)
     `;
-    const orderResult = await db.query(insertOrderQuery, [full_name, email, address, phone, message]);
+    const orderResult = await db.query(insertOrderQuery, [fullName, email, address, phone, message]);
 
     const orderId = orderResult.insertId;
 
