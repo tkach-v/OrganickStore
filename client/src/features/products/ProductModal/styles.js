@@ -1,4 +1,4 @@
-import styled, {css} from "styled-components";
+import styled from "styled-components";
 import {Text, Title, ProductCategory} from "../../../assets/styles/common";
 
 export const StyledModal = styled.div`

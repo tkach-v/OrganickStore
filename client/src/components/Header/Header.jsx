@@ -22,6 +22,7 @@ import dropdownIcon from "../../assets/img/header/dropdown-icon.svg"
 import searchIcon from "../../assets/img/header/search-icon.svg"
 import cartIcon from "../../assets/img/header/cart-icon.svg"
 import useBodyOverflow from "../../hooks/useBodyOverflow";
+import {useSelector} from "react-redux";
 
 function HeaderMenu({setShowNav}) {
   const menuItems = [
@@ -95,7 +96,7 @@ function Search() {
 }
 
 function Cart({setShowNav}) {
-  const counter = 0;
+  const count = useSelector(state => state.cart.items.length);
 
   return (
     <StyledCart
@@ -105,7 +106,8 @@ function Cart({setShowNav}) {
       <CartIcon>
         <img src={cartIcon} alt=""/>
       </CartIcon>
-      <CartText>Cart ({counter})</CartText>
+      <CartText>
+        Cart (<span style={{color: (count > 0 ? '#F00' : 'inherit')}}>{count}</span>)</CartText>
     </StyledCart>
   )
 }

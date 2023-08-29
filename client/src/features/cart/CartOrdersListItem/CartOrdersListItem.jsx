@@ -78,7 +78,7 @@ function CartOrdersListItem({item}) {
       .catch(error => {
         console.error('Error while getting product:', error);
       });
-  }, []);
+  }, [item.product_id]);
 
   const isSmallScreen = window.matchMedia('(max-width: 550px)').matches;
 
