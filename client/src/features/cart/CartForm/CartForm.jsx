@@ -103,7 +103,6 @@ function CartForm({visible}) {
           const postData = {...values,
             products: [...products]
           }
-          console.log(postData)
           axios.post('http://localhost:5000/orders', postData)
             .then(response => {
               dispatch(removeAll());
