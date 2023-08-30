@@ -100,6 +100,11 @@ function CartForm({visible}) {
         validateOnBlur
         validationSchema={validationSchema}
         onSubmit={(values) => {
+          if (products.length < 1) {
+            alert("Choose the products you want to order");
+            return
+          }
+
           const postData = {...values,
             products: [...products]
           }

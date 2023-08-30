@@ -65,19 +65,19 @@ function Footer() {
           <nav>
             <ul>
               <FooterNavListItem>
-                <FooterNavLink href="#">Style Guide</FooterNavLink>
+                <FooterNavLink to="style-guide">Style Guide</FooterNavLink>
               </FooterNavListItem>
               <FooterNavListItem>
-                <FooterNavLink href="#">404 Not Found</FooterNavLink>
+                <FooterNavLink to="404-error">404 Not Found</FooterNavLink>
               </FooterNavListItem>
               <FooterNavListItem>
-                <FooterNavLink href="#">Password Protected</FooterNavLink>
+                <FooterNavLink to="password-protected">Password Protected</FooterNavLink>
               </FooterNavListItem>
               <FooterNavListItem>
-                <FooterNavLink href="#">Licences</FooterNavLink>
+                <FooterNavLink to="licences">Licences</FooterNavLink>
               </FooterNavListItem>
               <FooterNavListItem>
-                <FooterNavLink href="#">Changelog</FooterNavLink>
+                <FooterNavLink to="changelog">Changelog</FooterNavLink>
               </FooterNavListItem>
             </ul>
           </nav>

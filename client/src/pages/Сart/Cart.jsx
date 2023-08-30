@@ -38,6 +38,13 @@ const CartContentInner = styled(Container)`
   max-width: 1600px;
 `
 
+const CartEmptyTitle = styled(Title)`
+  padding-bottom: 5rem;
+  @media (max-width: ${props => props.theme.breakpoints.medium}) {
+    padding-bottom: 1rem;
+  }
+`
+
 function Cart(props) {
   const [visibleForm, setVisibleForm] = useState(false);
   const itemsList = useSelector(state => state.cart.items);
@@ -47,20 +54,29 @@ function Cart(props) {
       <CartTitle>Cart</CartTitle>
       <CartContent>
         <CartContentInner>
-          <CartOrdersList ordersItems={itemsList}/>
-          {visibleForm ? null : (
-            <CustomArrowButton
-              type="button"
-              $paddingX="3.2rem"
-              $marginTop="4rem"
-              $color="#FFFFFF"
-              $backgroundColor={props => props.theme.colors.title}
-              onClick={() => setVisibleForm(true)}
-            >To order</CustomArrowButton>
+          {itemsList.length < 1 ? (
+            <CartEmptyTitle>Cart is empty</CartEmptyTitle>
+          ) : (
+            <>
+              <CartOrdersList ordersItems={itemsList}/>
+              {visibleForm ? null : (
+                <CustomArrowButton
+                  type="button"
+                  $paddingX="3.2rem"
+                  $marginTop="4rem"
+                  $color="#FFFFFF"
+                  $backgroundColor={props => props.theme.colors.title}
+                  onClick={() => {
+                    setVisibleForm(true);
+                  }}
+                >To order</CustomArrowButton>
+              )}
+              {visibleForm &&
+                <CartForm/>
+              }
+            </>
           )}
-          {visibleForm &&
-            <CartForm/>
-          }
+
         </CartContentInner>
       </CartContent>
     </>

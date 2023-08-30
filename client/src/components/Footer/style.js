@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {Container, Title} from "../../assets/styles/common";
+import {Link} from "react-router-dom";
 
 export const StyledFooterTop = styled(Container)`
   display: flex;
@@ -18,7 +19,7 @@ export const FooterNavListItem = styled.div`
   padding-bottom: 1rem;
 `
 
-export const FooterNavLink = styled.a`
+export const FooterNavLink = styled(Link)`
   color: ${props => props.theme.colors.text};
   transition: all 0.2s ease-in-out;
   @media (min-width: ${props => props.theme.breakpoints.medium}) {
