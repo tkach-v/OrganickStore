@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+# Organick Online Store
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the README file for Organick Online Store. This document provides an overview of the technical stack and architecture of this online store.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Overview](#overview)
+- [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
 
-### `npm start`
+## Overview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Online store is developed using the following technologies:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Frontend**:
+* React: I use React to build the user interface, and create dynamic and interactive views for our customers.
+* Redux: Redux helps manage state across the application, ensuring a smooth user experience.
+* Styled Components: I utilize styled-components for styling, allowing modular and maintainable UI design.
 
-### `npm test`
+**Backend**:
+* Node.js: Our backend is powered by Node.js, providing a runtime environment for server-side operations.
+* Express: Express is used to set up routes, handle requests, and manage backend functionality.
+* SQL: I use SQL databases to store product information, leveraging the relational model for data organization.
+* MySQL: MySQL is my choice of database management system.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting Started
 
-### `npm run build`
+To run the Organick online store locally, follow these steps:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Node.js: [Download and install Node.js](https://nodejs.org/)
+- MySQL Server: [Download and install MySQL](https://dev.mysql.com/downloads/)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installation
 
-### `npm run eject`
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/tkach-v/OrganickStore.git
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Import the initial database structure and values using the db.sql script in the server folder. You should run the db.sql script.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. In the server directory, create a .env file with the following contents:
+    ```bash
+    DB_NAME=organick_store
+    DB_HOST=your_mysql_host (127.0.0.1 default)
+    DB_PORT=your_mysql_port (3306 default)
+    DB_USER=your_mysql_username
+    DB_PASSWORD=your_mysql_password
+   ```
+    Replace the placeholders (your_mysql_host, your_mysql_port, your_mysql_username, your_mysql_password) with your actual MySQL server information.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4. Install dependencies and start the server:
+    ```bash
+    cd server
+    npm install
+    npm start
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+5. Install dependencies and start the client:
+    ```bash
+    cd client
+    npm install
+    npm start
